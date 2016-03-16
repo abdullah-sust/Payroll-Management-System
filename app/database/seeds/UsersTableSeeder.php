@@ -9,7 +9,7 @@ class UsersTableSeeder extends Seeder {
 	{
 		$users = [
 					[
-								'email'      => 'ratulcse27@gmail.com',
+								'email'      => 'mrsiddiki@gmail.com',
 								'password'   => Hash::make('a'),
 								'created_at' => date('Y-m-d H:i:s'),
 								'updated_at' => date('Y-m-d H:i:s')

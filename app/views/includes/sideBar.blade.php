@@ -13,20 +13,20 @@
                       </a>
                   </li>
 
-                  {{-- Task Manager --}}
+                  {{-- Add an Employee --}}
                   <li>
 
-                      <a href="#">
-                          <i class="fa fa-tasks"></i>
-                          <span>Task Manager</span>
+                      <a href="{{ route('employee.create') }}">
+                          <i class="fa fa-user"></i>
+                          <span>Add an Employee</span>
                       </a>
                   </li>
-                  {{-- Carrier Accounts --}}
+                  {{-- Employee List --}}
                   <li>
 
-                      <a href="#">
-                          <i class="fa fa-plane"></i>
-                          <span>Carrier Accounts</span>
+                      <a href="{{ route('employee.index') }}">
+                          <i class="fa fa-users"></i>
+                          <span>Employee List</span>
                       </a>
                   </li>
 
