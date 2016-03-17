@@ -12,7 +12,7 @@ class CreateProfileTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('profile', function(Blueprint $table)
+		Schema::create('profiles', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
@@ -23,13 +23,13 @@ class CreateProfileTable extends Migration {
 									
 			$table->string('first_name');
 			$table->string('last_name');
-			$table->string('national_id')->unique();
+			$table->bigInteger('national_id')->unique();
 			$table->string('sex');
 			$table->string('blood_group');
 			$table->string('birth_date');
 			$table->string('marital_status');
-			$table->string('photo');
 			$table->string('phone');
+			$table->string('photo');
 
 			$table->timestamps();
 		});
@@ -42,7 +42,7 @@ class CreateProfileTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('profile');
+		Schema::drop('profiles');
 	}
 
 }

@@ -15,46 +15,102 @@
                 <div class="panel-body">
                     {{ Form::open(array('route' => 'employee.store', 'class' => 'form-horizontal','files' => true)) }}
 
-        <!-- input for tiltle -->
+        <!-- input for firstName-->
 
                     <div class="form-group">
-                        {{ Form::label('name', 'Employee Name*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('first_name', 'First Name*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('name', null, array('class' => 'form-control',  'placeholder' => 'Employee Full Name', 'required')) }}
+                            {{ Form::text('first_name', null, array('class' => 'form-control',  'placeholder' => 'Employee First Name', 'required')) }}
                         </div>
                     </div>
 
-        <!-- input for description -->
+        <!-- input for lastname -->
 
                     <div class="form-group">
-                        {{ Form::label('description', 'Employee Description*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('last_name', 'Last Name*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('description', null, array('class' => 'form-control', 'placeholder' => 'Card Description', 'required')) }}
+                            {{ Form::text('last_name', null, array('class' => 'form-control', 'placeholder' => 'Last Name', 'required')) }}
                         </div>
                     </div>
 
-        <!-- input for price -->           
+
+        <!-- input for email -->
 
                     <div class="form-group">
-                        {{ Form::label('price', 'employee Price( Dollar )*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('email', 'Email Address*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('price', null, array('class' => 'form-control', 'placeholder' => 'Provide Card Price in Dollar', 'required')) }}
+                            {{ Form::email('email', null, array('class' => 'form-control', 'placeholder' => 'Employee Email Address', 'required')) }}
                         </div>
                     </div>
 
-        <!-- input for status -->
+        <!-- input for nid -->           
 
-                   
+                    <div class="form-group">
+                        {{ Form::label('nid', 'National ID', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::text('nid', null, array('class' => 'form-control', 'placeholder' => 'National ID', 'required')) }}
+                        </div>
+                    </div>
+
+         <!-- input for sex -->           
+
+                    <div class="form-group">
+                        {{ Form::label('sex', 'Sex*', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::radio('sex', 'Female', array('class' => 'form-control', 'required')) }} Female<br>
+                            {{ Form::radio('sex', 'Male', array('class' => 'form-control', 'required')) }} Male
+                        </div>
+                    </div>
+
+        <!-- input for blood_group -->           
+
+                    <div class="form-group">
+                        {{ Form::label('blood_group', 'Blood Group', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::select('blood_group', $bg,null, array('class' => 'form-control', 'required')) }}
+                        </div>
+                    </div>
+
+        <!-- input for dateofbirth -->           
+
+                    <div class="form-group">
+                        {{ Form::label('dob', 'Date of Birth', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::text('dob', null, array('class' => 'form-control', 'placeholder' => 'Date of Birth', 'id' => 'dob')) }}
+                        </div>
+                    </div>
+
+        <!-- input for marital_status -->           
+
+                    <div class="form-group">
+                        {{ Form::label('marital_status', 'Marital Status', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::radio('marital_status', 'Unmarried', true) }}<span> Unmarried</span><br>
+                            {{ Form::radio('marital_status', 'Married', array('class' => 'form-control')) }} <span> Married</span>
+                        </div>
+                    </div>
+
+        <!-- input for phone number-->
+
+                    <div class="form-group">
+                        {{ Form::label('contact', 'Contact Number*', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::text('contact', null, array('class' => 'form-control',  'placeholder' => 'Contact Number', 'required')) }}
+                        </div>
+                    </div>
+
 
         <!-- image upload  -->
 
                     <div class="form-group">
-                        {{ Form::label('img_link', "Upload Card Image*", array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('img_link', "Upload Photo", array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::file('img_link', array( 'class' => 'file-loading' , 'multiple'=>false, 'id' => 'input-4' )) }}
                         </div>
                     </div>
-                      
+                   
+
+     
         <!-- submit button  -->       
 
                     <div class="form-group">
@@ -75,6 +131,7 @@
 @section('style')
     {{ HTML::style('css/chosen_dropdown/chosen.css') }}
     {{ HTML::style('rename/css/fileinput.min.css') }}
+	{{ HTML::style('assets/bootstrap-datepicker/css/datepicker.css') }}
 
 @stop
 
@@ -86,6 +143,7 @@
     {{ HTML::script('rename/js/plugins/canvas-to-blob.min.js') }}
     {{ HTML::script('rename/js/fileinput_locale_<lang>.js') }}
     {{ HTML::script('rename/js/fileinput.min.js') }}
+    {{ HTML::script('assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}
 
 
    
@@ -94,6 +152,10 @@
     <script>
     $(document).on('ready', function() {
         $("#input-4").fileinput({showCaption: false});
+        /*$("#date").datepicker({
+                format: 'yyyy-mm-dd'
+            });*/
+            $( "#dob" ).datepicker( "setDate", new Date() ); 
     });
     </script>    
     
