@@ -10,7 +10,10 @@ class SalaryController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$salary = SalaryRank::all(); 
+		return View::make('salary.index')
+						->with('title', 'All Salary')
+						->with('salary', $salary);
 	}
 
 	/**
@@ -21,7 +24,10 @@ class SalaryController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$users = User::lists('email', 'id');
+		return View::make('salary.create')
+						->with('title', 'Create New Salary')
+						->with('userId', $users);
 	}
 
 	/**
@@ -32,7 +38,37 @@ class SalaryController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = [
+
+					'user_id'      => 'required',
+					'rank' => 'required|numeric',
+					'basic_salary' => 'required|numeric',
+					'bonus' => 'required|numeric'
+		];
+
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+
+		$salary = new SalaryRank();
+		$salary->user_id= $data['user_id'];
+		$salary->rank = $data['rank'];
+		$salary->basic= $data['basic_salary'];
+		$salary->bonus = $data['bonus'];
+		
+		
+		if($salary->save()){
+			return Redirect::route('salary.index')->with('success',"Salary Added Successfully");
+		} else {
+			return Redirect::route('salary.index')->with('error',"Something went wrong.Try again");
+		}
+		
 	}
 
 	/**
