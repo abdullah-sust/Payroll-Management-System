@@ -342,7 +342,7 @@ ul.sidebar-menu li a.active i {
 }
 
 .white-bg {
-    background: #fff;
+    background: slategrey;
     border-bottom: 1px solid #f1f2f7;
 }
 
@@ -714,6 +714,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     cursor: pointer;
     display: inline-block;
     font-size: 20px;
+    color: turquoise;
 }
 
 

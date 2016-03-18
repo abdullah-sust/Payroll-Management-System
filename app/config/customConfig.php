@@ -2,7 +2,7 @@
 
 return [
 	'names' =>[
-		'siteName' => 'Template'
+		'siteName' => 'Payroll Management System'
 	],
 	'roles' =>[
 		'admin' => 'admin'

@@ -3,7 +3,7 @@
               <div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips"></div>
           </div>
           <!--logo start-->
-          <a href="{{route('dashboard')}}" class="logo" >Admin<span>Template</span></a>
+          <a href="{{route('dashboard')}}" class="logo" >Payroll Management System</a>
           <!--logo end-->
 
           <div class="top-nav ">
@@ -12,7 +12,7 @@
                   <!-- user login dropdown start-->
                   <li class="dropdown">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                          <img alt="" src="{{asset('img/avatar1_small.jpg')}}">
+                          <!--img alt="" src="{{asset('img/avatar1_small.jpg')}}"-->
                           <span class="username">{{Auth::user()->email}}</span>
                           <b class="caret"></b>
                       </a>
