@@ -61,8 +61,8 @@
                           <span>Emp Company Info</span>
                       </a>
                         <ul class="sub">
-                              <li><a href="">Index</a></li>
-                              <li><a href="">Create New</a></li>
+                              <li><a href="{{ route('companyinfo.index') }}">Index</a></li>
+                              <li><a href="{{ route('companyinfo.create') }}">Create New</a></li>
                         </ul>
                   </li>
 
