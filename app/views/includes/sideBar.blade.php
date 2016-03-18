@@ -37,8 +37,8 @@
                           <span>Salary & Rank</span>
                       </a>
                         <ul class="sub">
-                              <li><a href="{{ route('designation.index') }}">All Designations</a></li>
-                              <li><a href="{{ route('designation.create') }}">Create Designation</a></li>
+                              <li><a href="{{ route('salary.index') }}">All Salary</a></li>
+                              <li><a href="{{ route('salary.create') }}">Create Salary</a></li>
                         </ul>
                   </li>
 
@@ -79,13 +79,13 @@
                   </li>
 
                   {{-- Roles & Permissions --}}
-                  <li>
+                  <!--li>
 
                       <a href="#">
                           <i class="fa fa-gears"></i>
                           <span>Roles & Permissions</span>
                       </a>
-                  </li>
+                  </li-->
 
 
                   

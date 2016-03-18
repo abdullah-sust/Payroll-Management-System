@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     {{ Form::open(array('route' => 'designation.store', 'class' => 'form-horizontal','files' => true)) }}
 
-        <!-- input for firstName-->
+        <!-- input for name-->
 
                     <div class="form-group">
                         {{ Form::label('name', 'Designation Name*', array('class' => 'col-md-2 control-label')) }}

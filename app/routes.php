@@ -52,7 +52,7 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::put('employee/{id}',['as' => 'employee.update', 'uses' => 'EmployeeController@update']);
 	Route::delete('employee/{id}',['as' => 'employee.delete', 'uses' => 'EmployeeController@destroy']);
 
-	// Designation Controller 
+	// Designation CRUD
 
 	Route::get('designation',['as' => 'designation.index', 'uses' => 'DesignationController@index']);
 	Route::get('designation/create',['as' => 'designation.create', 'uses' => 'DesignationController@create']);
@@ -61,6 +61,16 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('designation/{id}/show',['as' => 'designation.show', 'uses' => 'DesignationController@show']);
 	Route::put('designation/{id}',['as' => 'designation.update', 'uses' => 'DesignationController@update']);
 	Route::delete('designation/{id}',['as' => 'designation.delete', 'uses' => 'DesignationController@destroy']);
+
+	// Salary & Rank CRUD
+
+	Route::get('salary',['as' => 'salary.index', 'uses' => 'SalaryController@index']);
+	Route::get('salary/create',['as' => 'salary.create', 'uses' => 'SalaryController@create']);
+	Route::post('salary',['as' => 'salary.store', 'uses' => 'SalaryController@store']);
+	Route::get('salary/{id}/edit',['as' => 'salary.edit', 'uses' => 'SalaryController@edit']);
+	Route::get('salary/{id}/show',['as' => 'salary.show', 'uses' => 'SalaryController@show']);
+	Route::put('salary/{id}',['as' => 'salary.update', 'uses' => 'SalaryController@update']);
+	Route::delete('salary/{id}',['as' => 'salary.delete', 'uses' => 'SalaryController@destroy']);
 
 			
 
