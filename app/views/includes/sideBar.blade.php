@@ -30,40 +30,52 @@
                       </a>
                   </li>
 
-                  {{-- Shipments --}}
-                  <li>
-
-                      <a href="#">
-                          <i class="fa fa-truck"></i>
-                          <span>Shipments</span>
+                  {{-- Salary & Rank --}}
+                 <li class="sub-menu">
+                      <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                          <span>Salary & Rank</span>
                       </a>
+                        <ul class="sub">
+                              <li><a href="{{ route('designation.index') }}">All Designations</a></li>
+                              <li><a href="{{ route('designation.create') }}">Create Designation</a></li>
+                        </ul>
                   </li>
 
-                  {{-- Customers --}}
-                  <li>
-
-                      <a href="#">
-                          <i class="fa fa-user"></i>
-                          <span>Customers</span>
+                  {{-- Designations --}}
+                  <li class="sub-menu">
+                      <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                          <span>Designations</span>
                       </a>
+                        <ul class="sub">
+                              <li><a href="{{ route('designation.index') }}">All Designations</a></li>
+                              <li><a href="{{ route('designation.create') }}">Create Designation</a></li>
+                        </ul>
                   </li>
 
-                  {{-- Salespersons --}}
-                  <li>
-
-                      <a href="#">
-                          <i class="fa fa-flash"></i>
-                          <span>Sales persons</span>
+                  {{-- Company Profile --}}
+                  <li class="sub-menu">
+                      <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                          <span>Emp Company Info</span>
                       </a>
+                        <ul class="sub">
+                              <li><a href="">Index</a></li>
+                              <li><a href="">Create New</a></li>
+                        </ul>
                   </li>
 
-                  {{-- Staff Users --}}
-                  <li>
-
-                      <a href="#">
-                          <i class="fa fa-users"></i>
-                          <span>Staff Users</span>
+                  {{-- Reward --}}
+                  <li class="sub-menu">
+                      <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                          <span>Reward/Fine</span>
                       </a>
+                        <ul class="sub">
+                              <li><a href="">States of Reward</a></li>
+                              <li><a href="">Add Reward</a></li>
+                        </ul>
                   </li>
 
                   {{-- Roles & Permissions --}}

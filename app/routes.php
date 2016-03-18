@@ -52,6 +52,16 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::put('employee/{id}',['as' => 'employee.update', 'uses' => 'EmployeeController@update']);
 	Route::delete('employee/{id}',['as' => 'employee.delete', 'uses' => 'EmployeeController@destroy']);
 
+	// Designation Controller 
+
+	Route::get('designation',['as' => 'designation.index', 'uses' => 'DesignationController@index']);
+	Route::get('designation/create',['as' => 'designation.create', 'uses' => 'DesignationController@create']);
+	Route::post('designation',['as' => 'designation.store', 'uses' => 'DesignationController@store']);
+	Route::get('designation/{id}/edit',['as' => 'designation.edit', 'uses' => 'DesignationController@edit']);
+	Route::get('designation/{id}/show',['as' => 'designation.show', 'uses' => 'DesignationController@show']);
+	Route::put('designation/{id}',['as' => 'designation.update', 'uses' => 'DesignationController@update']);
+	Route::delete('designation/{id}',['as' => 'designation.delete', 'uses' => 'DesignationController@destroy']);
+
 			
 
 });

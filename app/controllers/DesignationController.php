@@ -10,7 +10,10 @@ class DesignationController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$Designations = Designation::all(); 
+		return View::make('designation.index')
+						->with('title', 'All Designations')
+						->with('designations', $Designations);
 	}
 
 	/**
@@ -21,7 +24,8 @@ class DesignationController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('designation.create')
+						->with('title', 'Create New Designation');
 	}
 
 	/**
@@ -32,7 +36,29 @@ class DesignationController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = [
+
+					'name'      => 'required',
+					
+		];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$desig = new Designation();
+		$desig->name = $data['name'];
+
+		if($desig->save()){
+			return Redirect::route('designation.index')->with('success',"New designation Added Successfully");
+		} else {
+			return Redirect::route('designation.index')->with('error',"Something went wrong.Try again");
+		}
+		
 	}
 
 	/**
@@ -44,7 +70,7 @@ class DesignationController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		
 	}
 
 	/**
@@ -56,7 +82,14 @@ class DesignationController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		try{
+			$designation= Designation::findOrFail($id);
+			return View::make('designation.edit')
+						->with('designation',$designation)
+						->with('title','Edit Designation Name');
+		}catch(Exception $ex){
+			return Redirect::route('designation.index')->with('error','Something went wrong.Try Again.');
+		}
 	}
 
 	/**
@@ -68,7 +101,26 @@ class DesignationController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$rules = [
+					'name'      => 'required',		
+				];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$desig = Designation::find($id);
+		$desig->name = $data['name'];
+
+		if($desig->save()){
+			return Redirect::route('designation.index')->with('success',"Designation Updated Successfully");
+		} else {
+			return Redirect::route('designation.index')->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
@@ -80,7 +132,14 @@ class DesignationController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		try{
+			Designation::destroy($id);
+
+			return Redirect::route('designation.index')->with('success','Designation Deleted Successfully.');
+
+		}catch(Exception $ex){
+			return Redirect::route('designation.index')->with('error','Something went wrong.Try Again.');
+		}
 	}
 
 }
