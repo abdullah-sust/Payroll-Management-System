@@ -54,7 +54,7 @@ class DesignationController extends \BaseController {
 		$desig->name = $data['name'];
 
 		if($desig->save()){
-			return Redirect::route('designation.index')->with('success',"New designation Added Successfully");
+			return Redirect::route('designation.index')->with('success',"New Designation Added Successfully");
 		} else {
 			return Redirect::route('designation.index')->with('error',"Something went wrong.Try again");
 		}

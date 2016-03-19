@@ -92,7 +92,14 @@ class SalaryController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		try{
+			$salary = SalaryRank::findOrFail($id);
+			return View::make('salary.edit')
+						->with('salary',$salary )
+						->with('title','Edit Designation Name');
+		}catch(Exception $ex){
+			return Redirect::route('salary.index')->with('error','Something went wrong.Try Again.');
+		}
 	}
 
 	/**
@@ -104,7 +111,30 @@ class SalaryController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$rules = [
+					'rank'      => 'required',
+					'basic'     => 'required',
+					'bonus'     => 'required'
+				];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$salary = SalaryRank::find($id);
+		$salary->rank = $data['rank'];
+		$salary->basic = $data['basic'];
+		$salary->bonus = $data['bonus'];
+
+		if($salary->save()){
+			return Redirect::route('salary.index')->with('success',"Salary Updated Successfully");
+		} else {
+			return Redirect::route('salary.index')->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
@@ -116,7 +146,14 @@ class SalaryController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		try{
+			SalaryRank::destroy($id);
+
+			return Redirect::route('salary.index')->with('success','Designation Deleted Successfully.');
+
+		}catch(Exception $ex){
+			return Redirect::route('salary.index')->with('error','Something went wrong.Try Again.');
+		}
 	}
 
 }
