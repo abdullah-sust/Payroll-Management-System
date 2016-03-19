@@ -73,8 +73,8 @@
                           <span>Reward/Fine</span>
                       </a>
                         <ul class="sub">
-                              <li><a href="">States of Reward</a></li>
-                              <li><a href="">Add Reward</a></li>
+                              <li><a href="{{ route('reward.index') }}">States of Reward</a></li>
+                              <li><a href="{{ route('reward.create') }}">Add Reward</a></li>
                         </ul>
                   </li>
 

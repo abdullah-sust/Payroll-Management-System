@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     {{ Form::open(array('route' => 'salary.store', 'class' => 'form-horizontal')) }}
 
-        <!-- input for name-->
+                    <!-- input for name-->
 
                     <div class="form-group">
                         {{ Form::label('user_id', 'Employee Email*', array('class' => 'col-md-2 control-label')) }}
@@ -23,9 +23,6 @@
                             {{ Form::select('user_id', $userId, '',array('class' => 'form-control')) }}
                         </div>
                     </div>
-
-
-
 
 
                     <!-- input for name-->

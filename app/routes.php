@@ -80,6 +80,16 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('companyinfo/{id}/show',['as' => 'companyinfo.show', 'uses' => 'CompanyController@show']);
 	Route::put('companyinfo/{id}',['as' => 'companyinfo.update', 'uses' => 'CompanyController@update']);
 	Route::delete('companyinfo/{id}',['as' => 'companyinfo.delete', 'uses' => 'CompanyController@destroy']);
+    
+    // Reward & Fine CRUD
+
+	Route::get('reward',['as' => 'reward.index', 'uses' => 'RewardController@index']);
+	Route::get('reward/create',['as' => 'reward.create', 'uses' => 'RewardController@create']);
+	Route::post('reward',['as' => 'reward.store', 'uses' => 'RewardController@store']);
+	Route::get('reward/{id}/edit',['as' => 'reward.edit', 'uses' => 'RewardController@edit']);
+	Route::get('reward/{id}/show',['as' => 'reward.show', 'uses' => 'RewardController@show']);
+	Route::put('reward/{id}',['as' => 'reward.update', 'uses' => 'RewardController@update']);
+	Route::delete('reward/{id}',['as' => 'reward.delete', 'uses' => 'RewardController@destroy']);
 
 
 			
