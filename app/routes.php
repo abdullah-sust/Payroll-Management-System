@@ -41,7 +41,6 @@ Route::group(array('before' => 'auth'), function()
 
 Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 {
-
 	// Employee
 
 	Route::get('employee',['as' => 'employee.index', 'uses' => 'EmployeeController@index']);
@@ -71,6 +70,27 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('salary/{id}/show',['as' => 'salary.show', 'uses' => 'SalaryController@show']);
 	Route::put('salary/{id}',['as' => 'salary.update', 'uses' => 'SalaryController@update']);
 	Route::delete('salary/{id}',['as' => 'salary.delete', 'uses' => 'SalaryController@destroy']);
+
+	// Employee Company info CRUD
+
+	Route::get('companyinfo',['as' => 'companyinfo.index', 'uses' => 'CompanyController@index']);
+	Route::get('companyinfo/create',['as' => 'companyinfo.create', 'uses' => 'CompanyController@create']);
+	Route::post('companyinfo',['as' => 'companyinfo.store', 'uses' => 'CompanyController@store']);
+	Route::get('companyinfo/{id}/edit',['as' => 'companyinfo.edit', 'uses' => 'CompanyController@edit']);
+	Route::get('companyinfo/{id}/show',['as' => 'companyinfo.show', 'uses' => 'CompanyController@show']);
+	Route::put('companyinfo/{id}',['as' => 'companyinfo.update', 'uses' => 'CompanyController@update']);
+	Route::delete('companyinfo/{id}',['as' => 'companyinfo.delete', 'uses' => 'CompanyController@destroy']);
+    
+    // Reward & Fine CRUD
+
+	Route::get('reward',['as' => 'reward.index', 'uses' => 'RewardController@index']);
+	Route::get('reward/create',['as' => 'reward.create', 'uses' => 'RewardController@create']);
+	Route::post('reward',['as' => 'reward.store', 'uses' => 'RewardController@store']);
+	Route::get('reward/{id}/edit',['as' => 'reward.edit', 'uses' => 'RewardController@edit']);
+	Route::get('reward/{id}/show',['as' => 'reward.show', 'uses' => 'RewardController@show']);
+	Route::put('reward/{id}',['as' => 'reward.update', 'uses' => 'RewardController@update']);
+	Route::delete('reward/{id}',['as' => 'reward.delete', 'uses' => 'RewardController@destroy']);
+
 
 			
 

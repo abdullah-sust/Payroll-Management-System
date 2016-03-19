@@ -133,7 +133,14 @@ class EmployeeController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		try{
+			$employee = User::findOrFail($id);
+			return View::make('employee.edit')
+						->with('employee',$employee)
+						->with('title','Edit Employee Name');
+		}catch(Exception $ex){
+		return Redirect::route('employee.index')->with('error','Something went wrong.Try Again.');
+		}
 	}
 
 	/**
@@ -145,7 +152,43 @@ class EmployeeController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$rules = [
+					'first_name'      => 'required',
+					'last_name'       => 'required',
+					'email'           => 'required',
+					'nid'             => 'required',
+					'dob'             => 'required',
+					'sex'             => 'required',
+					'marital_status'  => 'required',
+					'contact'         => 'required'		
+				];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$employee = User::find($id);
+		$employee->first_name = $data['first_name'];
+		$employee->last_name = $data['last_name'];
+		$employee->national_id = $data['nid'];
+		$employee->sex = $data['sex'];
+		$employee->birth_date = $data['dob'];
+		$employee->phone = $data['contact'];
+		$employee->marital_status = $data['marital_status'];
+		//$employee->photo = $data[''];
+		//$employee->blood_group = $data[''];
+		
+		
+
+		if($employee->save()){
+			return Redirect::route('employee.index')->with('success',"Employee Updated Successfully");
+		} else {
+			return Redirect::route('employee.index')->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
