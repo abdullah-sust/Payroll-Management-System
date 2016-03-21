@@ -10,7 +10,10 @@ class CompanyController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$companyinfos = CompanyProfile::all(); 
+		return View::make('company.index')
+						->with('title', 'All Companyinfos')
+						->with('companyinfos', $companyinfos);
 	}
 
 	/**
@@ -21,7 +24,8 @@ class CompanyController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('company.create')
+						->with('title', 'Create New Company Info');
 	}
 
 	/**
@@ -32,7 +36,36 @@ class CompanyController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = [
+
+					'id'        => 'required|numeric',
+					'rank_id'        => 'required',
+					'designation_id' => 'required|numeric',
+					'join_date'      => 'required',
+					'contribution'   => 'required',
+					
+		];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$companyinfo = new CompanyProfile();
+		$companyinfo->id = $data['id'];
+		$companyinfo->rank_id = $data['rank_id'];
+		$companyinfo->join_date = $data['join_date'];
+		$companyinfo->designation_id = $data['designation_id'];
+		$companyinfo->contribution = $data['contribution'];
+
+		if($companyinfo->save()){
+			return Redirect::route('companyinfo.index')->with('success',"New Company Info Added Successfully");
+		} else {
+			return Redirect::route('companyinfo.index')->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
