@@ -7,9 +7,7 @@
                 <header class="panel-heading">
                     {{ $title }}
                     <span class="pull-right">
-
                             <a class="btn btn-success btn-sm" href="{{ URL::route('salary.index') }}">All Salary</a>
-
 					</span>
                 </header>
                 <div class="panel-body">

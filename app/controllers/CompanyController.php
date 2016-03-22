@@ -27,7 +27,7 @@ class CompanyController extends \BaseController {
 	public function create()
 	{
 
-		$users = User::lists('email');
+		$users = User::lists('email','id');
 		$ranks = SalaryRank::lists('rank');
 		$desigs = Designation::lists('name');
 		return View::make('company.create')
@@ -49,11 +49,11 @@ class CompanyController extends \BaseController {
 		$rules = [
 
 
-					'id'        => 'required|numeric',
+					'user_id'        => 'required|numeric',
 					'rank_id'        => 'required',
 					'designation_id' => 'required|numeric',
 					'join_date'      => 'required',
-					'contribution'   => 'required',
+					'contribution'   => 'required'
 					
 		];
 
@@ -66,7 +66,7 @@ class CompanyController extends \BaseController {
 		}
 
 		$companyinfo = new CompanyProfile();
-		$companyinfo->id = $data['id'];
+		$companyinfo->id = $data['user_id'];
 		$companyinfo->rank_id = $data['rank_id'];
 		$companyinfo->join_date = $data['join_date'];
 		$companyinfo->designation_id = $data['designation_id'];
@@ -76,6 +76,7 @@ class CompanyController extends \BaseController {
 			return Redirect::route('companyinfo.index')->with('success',"New Company Info Added Successfully");
 		} else {
 			return Redirect::route('companyinfo.index')->with('error',"Something went wrong.Try again");
+		}
 
 	}
 
