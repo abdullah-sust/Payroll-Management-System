@@ -10,10 +10,17 @@ class CompanyController extends \BaseController {
 	 */
 	public function index()
 	{
+<<<<<<< HEAD
+		$companyinfos = CompanyProfile::all(); 
+		return View::make('company.index')
+						->with('title', 'All Companyinfos')
+						->with('companyinfos', $companyinfos);
+=======
 		$companyinfos = CompanyProfile::all();
 		return View::make('company.index')
 						->with('title','All Employeers Company Info')
 						->with('companyinfos',$companyinfos);
+>>>>>>> refs/remotes/origin/abdullah
 	}
 
 	/**
@@ -24,6 +31,10 @@ class CompanyController extends \BaseController {
 	 */
 	public function create()
 	{
+<<<<<<< HEAD
+		return View::make('company.create')
+						->with('title', 'Create New Company Info');
+=======
 		$users = User::lists('email');
 		$ranks = SalaryRank::lists('rank');
 		$desigs = Designation::lists('name');
@@ -32,6 +43,7 @@ class CompanyController extends \BaseController {
 						->with('users', $users)
 						->with('ranks',$ranks)
 						->with('desigs',$desigs);
+>>>>>>> refs/remotes/origin/abdullah
 	}
 
 	/**
@@ -44,6 +56,35 @@ class CompanyController extends \BaseController {
 	{
 		$rules = [
 
+<<<<<<< HEAD
+					'id'        => 'required|numeric',
+					'rank_id'        => 'required',
+					'designation_id' => 'required|numeric',
+					'join_date'      => 'required',
+					'contribution'   => 'required',
+					
+		];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$companyinfo = new CompanyProfile();
+		$companyinfo->id = $data['id'];
+		$companyinfo->rank_id = $data['rank_id'];
+		$companyinfo->join_date = $data['join_date'];
+		$companyinfo->designation_id = $data['designation_id'];
+		$companyinfo->contribution = $data['contribution'];
+
+		if($companyinfo->save()){
+			return Redirect::route('companyinfo.index')->with('success',"New Company Info Added Successfully");
+		} else {
+			return Redirect::route('companyinfo.index')->with('error',"Something went wrong.Try again");
+=======
 				'user_id' => 'required',
 				'rank_id' => 'required',
 				'designation_id' => 'required',
@@ -73,6 +114,7 @@ class CompanyController extends \BaseController {
 		else
 		{
 			return Redirect::route('company.index')->with('error',"Something went wrong.Try again");
+>>>>>>> refs/remotes/origin/abdullah
 		}
 	}
 
