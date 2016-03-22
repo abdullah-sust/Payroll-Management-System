@@ -10,7 +10,10 @@ class CompanyController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$companyinfos = CompanyProfile::all();
+		return View::make('company.index')
+						->with('title','All Employeers Company Info')
+						->with('companyinfos',$companyinfos);
 	}
 
 	/**
@@ -21,7 +24,14 @@ class CompanyController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$users = User::lists('email');
+		$ranks = SalaryRank::lists('rank');
+		$desigs = Designation::lists('name');
+		return View::make('company.create')
+						->with('title', 'Create New Company Info')
+						->with('users', $users)
+						->with('ranks',$ranks)
+						->with('desigs',$desigs);
 	}
 
 	/**
@@ -32,7 +42,38 @@ class CompanyController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = [
+
+				'user_id' => 'required',
+				'rank_id' => 'required',
+				'designation_id' => 'required',
+				'join_date' => 'required',
+				'contribution' => 'required'
+
+		];
+
+		$data = Input::all();
+		$validator = Validator::make($data, $rules);
+
+		if ($validator->fails()) {
+			return  Redirect::back()->withInput()->withErrors($validator);
+			//return  Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$desig = new CompanyProfile();
+		$desig->user_id = $data['user_id'];
+		$desig->rank_id = $data['rank_id'];
+		$desig->designation_id = $data['designation_id'];
+		$desig->join_date = $data['join_date'];
+		$desig->contribution = $data['contribution'];
+
+		if ($desig->save()) {
+			return Redirect::route('company.index')->with('success',"Employees Company Profile Added Successfully");
+		}
+		else
+		{
+			return Redirect::route('company.index')->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
