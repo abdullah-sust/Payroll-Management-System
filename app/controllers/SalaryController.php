@@ -41,9 +41,9 @@ class SalaryController extends \BaseController {
 		$rules = [
 
 					'user_id'      => 'required',
-					'rank' => 'required|numeric',
+					'rank'         => 'required|numeric',
 					'basic_salary' => 'required|numeric',
-					'bonus' => 'required|numeric'
+					'bonus'        => 'required|numeric'
 		];
 
 
