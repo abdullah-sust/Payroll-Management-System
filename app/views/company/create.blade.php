@@ -27,9 +27,9 @@
                     <!-- input for name-->
 
                     <div class="form-group">
-                        {{ Form::label('rank_id', 'Rank ID*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('rank', 'Rank ID*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::select('rank_id', $ranks, '',array('class' => 'form-control')) }}
+                            {{ Form::select('rank', $ranks, '',array('class' => 'form-control')) }}
                         </div>
                     </div>
 
@@ -54,9 +54,9 @@
                     <!-- input for name-->
 
                     <div class="form-group">
-                        {{ Form::label('contribution', 'Contribution*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('contribution', 'Contribution', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('contribution', null, array('class' => 'form-control',  'placeholder' => 'Contribution', 'required')) }}
+                            {{ Form::text('contribution', null, array('class' => 'form-control',  'placeholder' => 'Contribution')) }}
                         </div>
                     </div>
 
