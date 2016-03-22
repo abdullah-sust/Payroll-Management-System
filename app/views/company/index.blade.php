@@ -16,9 +16,15 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
+<<<<<<< HEAD
+                                <th>Rank</th>
+                                <th>Join-date</th>
+                                <th>Designation</th>
+=======
                                 <th>Rank ID</th>
                                 <th>Designation ID</th>
                                 <th>Join Date</th>
+>>>>>>> refs/remotes/origin/abdullah
                                 <th>Contribution</th>                   
                                 <th class="text-center">Actions</th>
                             </tr>
@@ -26,6 +32,16 @@
                             <tbody>
                             @foreach($companyinfos as $companyinfo)
                                 <tr>
+<<<<<<< HEAD
+                                    <td>{{ $companyinfo->id }}</td>
+                                    <td>{{ $companyinfo->rank_id }}</td>
+                                    <td>{{ $companyinfo->join_date }}</td>
+                                    <td>{{ $companyinfo->designation_id }}</td>
+                                    <td>{{ $companyinfo->contribution }}</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('companyinfo.edit', array('id' => $companyinfo->user_id)) }}">Edit</a>
+                                        <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $companyinfo->user_id }}">Delete</a>
+=======
                                     <td>{{ $companyinfo->id}}</td>
                                     <td>{{ $companyinfo->rank_id}}</td>
                                     <td>{{ $companyinfo->designation_id}}</td>
@@ -34,6 +50,7 @@
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('companyinfo.edit', array('id' => $companyinfo->id)) }}">Edit</a>
                                         <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $companyinfo->id }}">Delete</a>
+>>>>>>> refs/remotes/origin/abdullah
                                     </td>
                                 </tr>
                             @endforeach
