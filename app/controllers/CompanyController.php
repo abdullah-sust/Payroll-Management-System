@@ -28,8 +28,8 @@ class CompanyController extends \BaseController {
 	{
 
 		$users = User::lists('email','id');
-		$ranks = SalaryRank::lists('rank');
-		$desigs = Designation::lists('name');
+		$ranks = SalaryRank::lists('rank', 'id');
+		$desigs = Designation::lists('name', 'id');
 		return View::make('company.create')
 						->with('title', 'Create New Company Info')
 						->with('users', $users)
@@ -49,11 +49,10 @@ class CompanyController extends \BaseController {
 		$rules = [
 
 
-					'user_id'        => 'required|numeric',
-					'rank_id'        => 'required',
-					'designation_id' => 'required|numeric',
-					'join_date'      => 'required',
-					'contribution'   => 'required'
+					'user_id'        => 'required',
+					'rank'        => 'required',
+					'designation_id' => 'required',
+					'join_date'      => 'required'
 					
 		];
 
@@ -66,8 +65,8 @@ class CompanyController extends \BaseController {
 		}
 
 		$companyinfo = new CompanyProfile();
-		$companyinfo->id = $data['user_id'];
-		$companyinfo->rank_id = $data['rank_id'];
+		$companyinfo->user_id = $data['user_id'];
+		$companyinfo->rank_id = $data['rank'];
 		$companyinfo->join_date = $data['join_date'];
 		$companyinfo->designation_id = $data['designation_id'];
 		$companyinfo->contribution = $data['contribution'];
