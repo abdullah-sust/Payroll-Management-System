@@ -88,7 +88,7 @@ class CompanyController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		;
 	}
 
 	/**
@@ -100,7 +100,18 @@ class CompanyController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		try{
+			$companyinfo = CompanyProfile::findOrFail($id);
+			$ranks = SalaryRank::lists('rank', 'id');
+		    $desigs = Designation::lists('name', 'id');
+			return View::make('company.edit')
+						->with('companyinfo',$companyinfo)
+						->with('ranks',$ranks)
+						->with('desigs',$desigs)
+						->with('title','Edit Company Info Name');
+		}catch(Exception $ex){
+			return Redirect::route('companyinfo.index')->with('error','Something went wrong.Try Again.!!');
+		}
 	}
 
 	/**
@@ -112,7 +123,31 @@ class CompanyController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$rules = [
+					'rank_id'      => 'required',
+					'designation_id'     => 'required',
+					'join_date'  =>  'required',
+					'contribution'     => 'required'
+				];
+
+			$data = Input::all();
+			$validator = Validator::make($data,$rules);
+
+			if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$companyinfo = CompanyProfile::find($id);
+		$companyinfo->rank_id = $data['rank_id'];
+		$companyinfo->designation_id = $data['designation_id'];
+		$companyinfo->join_date = $data['join_date'];
+		$companyinfo->contribution = $data['contribution'];
+
+		if($companyinfo->save()){
+			return Redirect::route('companyinfo.index')->with('success',"Company Info Updated Successfully");
+		} else {
+			return Redirect::route('companyinfo.index')->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
@@ -124,7 +159,14 @@ class CompanyController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		try{
+			CompanyProfile::destroy($id);
+
+			return Redirect::route('companyinfo.index')->with('success','Company Info  Deleted Successfully.');
+
+		}catch(Exception $ex){
+			return Redirect::route('companyinfo.index')->with('error','Something went wrong.Try Again.');
+		}
 	}
 
 }
