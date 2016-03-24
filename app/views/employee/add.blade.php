@@ -76,7 +76,7 @@
                     <div class="form-group">
                         {{ Form::label('dob', 'Date of Birth', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('dob', null, array('class' => 'form-control', 'placeholder' => 'Date of Birth', 'id' => 'dob')) }}
+                            {{ Form::text('dob', null, array('class' => 'form-control', 'placeholder' => 'dd/mm/yyyy', 'id' => 'dob')) }}
                         </div>
                     </div>
 
@@ -85,8 +85,8 @@
                     <div class="form-group">
                         {{ Form::label('marital_status', 'Marital Status', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::radio('marital_status', 'Unmarried', true) }}<span> Unmarried</span><br>
-                            {{ Form::radio('marital_status', 'Married', array('class' => 'form-control')) }} <span> Married</span>
+                            {{ Form::radio('marital_status', 'Unmarried') }}<span> Unmarried</span><br>
+                            {{ Form::radio('marital_status', 'Married' ) }} <span> Married</span>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                     <div class="form-group">
                         {{ Form::label('contact', 'Contact Number*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('contact', null, array('class' => 'form-control',  'placeholder' => 'Contact Number', 'required')) }}
+                            {{ Form::text('contact', null, array('class' => 'form-control',  'placeholder' => '+880 XXXX XXX XXX', 'required')) }}
                         </div>
                     </div>
 

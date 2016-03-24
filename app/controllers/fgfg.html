@@ -16,6 +16,12 @@ class EmployeeController extends \BaseController {
 						->with('employees', $users);
 	}
 
+	/**
+	 * Show the form for creating a new resource.
+	 * GET /employee/create
+	 *
+	 * @return Response
+	 */
 	public function create()
 	{
 		$bg = [ 
@@ -33,7 +39,12 @@ class EmployeeController extends \BaseController {
 						->with('bg', $bg);
 	}
 
-
+	/**
+	 * Store a newly created resource in storage.
+	 * POST /employee
+	 *
+	 * @return Response
+	 */
 	public function store()
 	{
 		$rules = [
@@ -101,6 +112,25 @@ class EmployeeController extends \BaseController {
 		
 	}
 
+	/**
+	 * Display the specified resource.
+	 * GET /employee/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 * GET /employee/{id}/edit
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function edit($id)
 	{
 
@@ -133,6 +163,13 @@ class EmployeeController extends \BaseController {
 		}
 	}
 
+	/**
+	 * Update the specified resource in storage.
+	 * PUT /employee/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function update($id)
 	{
 		$rules = [
@@ -153,10 +190,8 @@ class EmployeeController extends \BaseController {
 		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
-		//return $id;
-		
 		// get the previous photo link 
-		 $img_link = Profile::find($id)->photo;
+		$img_link = Profile::($id)->photo;
 
 
 		if(Input::hasFile('img_link')) {
@@ -167,7 +202,7 @@ class EmployeeController extends \BaseController {
 			$file->move($destination, $filename);
 			$img_link = '/uploads/photos/'.$filename;
 		}
-		
+
 		$user = User::find($data['user_id']);
 		
 		$user->email = $data['email'];
@@ -178,23 +213,34 @@ class EmployeeController extends \BaseController {
 			$profile->user_id = $user_id;
 			$profile->first_name = $data['first_name'];
 			$profile->last_name = $data['last_name'];
-			$profile->national_id = $data['national_id'];
+			$profile->national_id = $data['nid'];
 			$profile->sex = $data['sex'];
 			$profile->blood_group = $data['blood_group'];
-			$profile->birth_date = $data['birth_date'];
+			$profile->birth_date = $data['dob'];
 			$profile->marital_status= $data['marital_status'];
-			$profile->phone = $data['phone'];
+			$profile->phone = $data['contact'];
 			$profile->photo = $img_link;
 
 			if($profile->save()){
-				return Redirect::route('employee.index')->with('success',"Employee Profile Updated Successfully");
+				return Redirect::route('employee.index')->with('success',"New Employee Added Successfully");
 			} else {
 				return Redirect::route('employee.index')->with('error',"Something went wrong.Try again");
 			}
 		} else {
 			return Redirect::route('employee.index')->with('error',"Something went wrong.Try again");
 		}
-		
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 * DELETE /employee/{id}
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
 	}
 
 }
