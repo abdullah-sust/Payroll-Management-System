@@ -90,8 +90,4 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('reward/{id}/show',['as' => 'reward.show', 'uses' => 'RewardController@show']);
 	Route::put('reward/{id}',['as' => 'reward.update', 'uses' => 'RewardController@update']);
 	Route::delete('reward/{id}',['as' => 'reward.delete', 'uses' => 'RewardController@destroy']);
-
-
-			
-
 });
