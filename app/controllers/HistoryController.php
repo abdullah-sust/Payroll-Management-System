@@ -10,7 +10,10 @@ class HistoryController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$data = History::all();
+		return View::make('history.index')
+					->with('title','Employee History')
+					->with('historys',$data);
 	}
 
 	/**
