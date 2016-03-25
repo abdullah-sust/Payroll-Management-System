@@ -87,6 +87,15 @@
                           <span>Salary Calculation</span>
                       </a>
                   </li>
+
+                  {{-- Salary History --}}
+                  <li>
+
+                      <a href="{{ route('history.index') }}">
+                          <i class="fa fa-user"></i>
+                          <span>History</span>
+                      </a>
+                  </li>
                   <!--li>
 
                       <a href="#">
