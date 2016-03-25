@@ -7,7 +7,7 @@
                 <header class="panel-heading clearfix">
                     {{ $title }}
                     <span class="pull-right">
-                            
+                            <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('history.create') }}">Pay Salary</a>
                     </span>
                 </header>
                 <div class="panel-body">
