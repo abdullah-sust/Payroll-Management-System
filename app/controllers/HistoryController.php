@@ -41,7 +41,8 @@ class HistoryController extends \BaseController {
 			
 
 		]
-		return View::make('history.create');
+		return View::make('history.create')
+					->with('month',$month);
 	}
 
 	/**
