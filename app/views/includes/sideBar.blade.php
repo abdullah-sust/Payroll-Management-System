@@ -78,7 +78,15 @@
                         </ul>
                   </li>
 
+
                   {{-- Roles & Permissions --}}
+                  <li>
+
+                      <a href="{{ route('calculation.index') }}">
+                          <i class="fa fa-user"></i>
+                          <span>Salary Calculation</span>
+                      </a>
+                  </li>
                   <!--li>
 
                       <a href="#">
@@ -86,18 +94,6 @@
                           <span>Roles & Permissions</span>
                       </a>
                   </li-->
-
-
-                  
-
-
-
-
-
-
-
-
-
               </ul>
               <!-- sidebar menu end-->
           </div>
