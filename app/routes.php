@@ -102,4 +102,6 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 
 
 	Route::get('salarycalculation/show',['as' => 'calculation.show', 'uses' => 'SalaryCalculationController@show']);
+
+	Route::get('history',['as' => 'history.index', 'uses' => 'HistoryController@index']);
 });
