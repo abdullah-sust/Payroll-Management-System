@@ -24,6 +24,18 @@ class UsersTableSeeder extends Seeder {
 		];
 
 		DB::table('users')->insert($users);
+
+		$faker = Faker::create();
+		for ($i=1; $i < 199; $i++) {
+		
+			User::create([
+				'EmployeeID' => 100100+$i,
+				'email'  =>$faker->email,
+				'password' => $faker->password,
+				'created_at' => $faker->dateTime($max ='now'),
+				'updated_at' => $faker->dateTime($max ='now')
+			]);
+		}
 	}
 
 }

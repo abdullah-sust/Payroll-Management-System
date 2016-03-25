@@ -72,6 +72,7 @@ class EmployeeController extends \BaseController {
 		
 
 		$user = new User();
+		$user->employeeID = Profile::rand_uniq();
 		$user->email = $data['email'];
 		$user->password = str_random(6);
 		$user->employeeID = 1000;
