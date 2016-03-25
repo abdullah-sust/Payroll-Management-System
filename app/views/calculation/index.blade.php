@@ -11,7 +11,7 @@
                     </span>
                 </header>
                 <div class="panel-body">
-                    {{ Form::open(array('route' => 'calculation.show', 'class' => 'form-horizontal')) }}
+                    {{ Form::open(array('route' => 'status.show', 'class' => 'form-horizontal')) }}
 
 
         <!-- input for name-->

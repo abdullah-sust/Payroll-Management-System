@@ -101,5 +101,5 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('salarycalculation/{id}',['as' => 'calculation.search', 'uses' => 'SalaryCalculationController@search']);
 
 
-	Route::get('salarycalculation/show',['as' => 'calculation.show', 'uses' => 'SalaryCalculationController@show']);
+	Route::post('status/show', ['as' => 'status.show', 'uses' => 'SalaryCalculationController@showStatus']);
 });
