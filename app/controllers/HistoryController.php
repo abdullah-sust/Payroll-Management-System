@@ -53,7 +53,7 @@ class HistoryController extends \BaseController {
 			'0' => 'Not Paid',
 			'1' => 'Paid',
 			];
-		$users = User::lists('email','id');
+		$users = User::lists('employeeID','id');
 		$month = [
 			'1' => 'January',
 			'2' => 'February',

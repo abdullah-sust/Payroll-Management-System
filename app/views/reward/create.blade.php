@@ -18,7 +18,7 @@
         <!-- input for name-->
 
                     <div class="form-group">
-                        {{ Form::label('user_id', 'Employee Email*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('user_id', 'Employee ID*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::select('user_id', $userId, '',array('class' => 'form-control')) }}
                         </div>
@@ -27,7 +27,7 @@
         <!-- input for name-->
 
                     <div class="form-group">
-                        {{ Form::label('fine', 'Fine*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('fine', 'Fine', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('fine', null, array('class' => 'form-control',  'placeholder' => 'Fine', 'required')) }}
                         </div>
@@ -37,7 +37,7 @@
         <!-- input for name-->
 
                     <div class="form-group">
-                        {{ Form::label('extra_pay', 'Extra Pay*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('extra_pay', 'Extra Pay', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('extra_pay', null, array('class' => 'form-control',  'placeholder' => 'Extra Payment', 'required')) }}
                         </div>

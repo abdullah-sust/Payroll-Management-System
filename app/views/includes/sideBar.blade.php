@@ -21,20 +21,21 @@
                           <span>Add an Employee</span>
                       </a>
                   </li>
-                  {{-- Set Employee Address --}}
-                  <li>
-
-                      <a href="{{ route('address.index')}}">
-                          <i class="fa fa-user"></i>
-                          <span>Employee Address</span>
-                      </a>
-                  </li>
+                  
                   {{-- Employee List --}}
                   <li>
 
                       <a href="{{ route('employee.index') }}">
                           <i class="fa fa-users"></i>
                           <span>Employee List</span>
+                      </a>
+                  </li>
+                  {{-- Set Employee Address --}}
+                  <li>
+
+                      <a href="{{ route('address.index')}}">
+                          <i class="fa fa-user"></i>
+                          <span>Employee Address</span>
                       </a>
                   </li>
 
@@ -69,8 +70,8 @@
                           <span>Emp Company Info</span>
                       </a>
                         <ul class="sub">
-                              <li><a href="{{ route('companyinfo.index') }}">Index</a></li>
-                              <li><a href="{{ route('companyinfo.create') }}">Create New</a></li>
+                              <li><a href="{{ route('companyinfo.index') }}">View All</a></li>
+                              <li><a href="{{ route('companyinfo.create') }}">Attach to Employee</a></li>
                         </ul>
                   </li>
 
@@ -88,13 +89,7 @@
 
 
                   {{-- Roles & Permissions --}}
-                  <li>
 
-                      <a href="{{ route('calculation.index') }}">
-                          <i class="fa fa-user"></i>
-                          <span>Salary Calculation</span>
-                      </a>
-                  </li>
 
                   {{-- Salary History --}}
                   <li>

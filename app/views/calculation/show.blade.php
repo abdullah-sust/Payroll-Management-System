@@ -9,7 +9,7 @@
                   <aside class="profile-info col-lg-9">
                       <section class="panel">
                           <div class="panel-body bio-graph-info">
-                              <h1>Employee Info ID: <span style="color:red">{{ $status->employeeID }}</span></h1>
+                              <h1>{{ $title }} ID: <span style="color:red">{{ $status->employeeID }}</span></h1>
                               <div class="row">
                                   <div class="bio-row">
                                       <p><span>First Name </span>: {{ $status->profile->first_name }}</p>
@@ -18,22 +18,28 @@
                                       <p><span>Last Name </span>: {{ $status->profile->last_name }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Country </span>: Australia</p>
+                                      <p><span>Email </span>: {{ $status->email }}</p>
                                   </div>
                                   <div class="bio-row">
                                       <p><span>Birthday</span>: {{ $status->profile->birth_date }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Occupation </span>: {{ $status->email }}</p>
-                                  </div>
-                                  <div class="bio-row">
-                                      <p><span>Email </span>: {{ $status->email }}</p>
-                                  </div>
-                                  <div class="bio-row">
-                                      <p><span>Mobile </span>: {{ $status->profile->phone }}</p>
+                                      <p><span>NID </span>: {{ $status->profile->national_id }}</p>
                                   </div>
                                   <div class="bio-row">
                                       <p><span>Phone </span>: {{ $status->profile->phone }}</p>
+                                  </div>
+                                   <div class="bio-row">
+                                      <p><span>Address </span>: @if(!empty($status->address->id))
+                                       {{ $status->address->postal_code }}, {{ $status->address->street }}, {{ $status->address->police_station }}
+                                        @else
+                                         @endif </p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>City </span>: @if(!empty($status->address)){{ $status->address->city }}@else @endif</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Country </span>: @if(!empty($status->address)){{ $status->address->country }} @else @endif</p>
                                   </div>
                               </div>
                           </div>
@@ -47,7 +53,7 @@
                                               <h3>Position</h3>
                                           </div>
                                           <div class="bio-desk">
-                                            @if(!empty($status->companyprofile->join_date))
+                                            @if(!empty($status->companyprofile->designation_id))
                                               <h3 style="color:green">{{ $status->companyprofile->designation->name }}</h3>
                                             @else
                                               ____
@@ -63,7 +69,7 @@
                                               <h3>Rank</h3>
                                           </div>
                                           <div class="bio-desk">
-                                            @if(!empty($status->companyprofile->join_date))
+                                            @if(!empty($status->companyprofile->rank_id))
                                               <h3 style="color:purple">{{ $status->companyprofile->rank->rank }}</h3>
                                             @else
                                               ____
@@ -81,7 +87,7 @@
                                           <div class="bio-desk">
                                               
 
-                                            @if(!empty($status->companyprofile->join_date))
+                                            @if(!empty($status->salaryrank->basic))
                                               <h3 style="color:green">{{ $salary }}</h3>
                                             @else
                                               ____

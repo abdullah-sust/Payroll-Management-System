@@ -27,7 +27,7 @@ class CompanyController extends \BaseController {
 	public function create()
 	{
 
-		$users = User::lists('email','id');
+		$users = User::lists('employeeID','id');
 		$ranks = SalaryRank::lists('rank', 'id');
 		$desigs = Designation::lists('name', 'id');
 		return View::make('company.create')
