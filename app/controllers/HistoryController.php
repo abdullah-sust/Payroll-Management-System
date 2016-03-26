@@ -30,8 +30,10 @@ class HistoryController extends \BaseController {
 	 */
 	public function create()
 	{
-		$month = [
 
+
+		$users = User::lists('email','id');
+		$month = [
 			'1' => 'January',
 			'2' => 'February',
 			'3' => 'March',
@@ -43,11 +45,13 @@ class HistoryController extends \BaseController {
 			'9' => 'September',
 			'10' => 'October',
 			'11' => 'November',
-			'12' => 'December'
-			
+			'12' => 'December'	
 
 		];
+
 		return View::make('history.create')
+					->with('userID',$users)
+					->with('title','Employee Payment')
 					->with('month',$month);
 	}
 
@@ -59,7 +63,32 @@ class HistoryController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = [
+
+			'user_id' => 'required',
+			'year'    => 'required',
+			'month'   => 'required',
+		];
+
+		$data = Input::all();
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$history = new History();
+		$history->user_id = $data['user_id'];
+		$history->year = $data['year'];
+		$history->month = $data['month'];
+		$history->status ='Paid';
+		$history->salary = 12345;
+
+		if($history->save()){
+			return Redirect::route('history.index');//->with('success',"Employee's History Added Successfully");
+		} else {
+			return Redirect::route('history.index');//->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
