@@ -21,6 +21,14 @@
                           <span>Add an Employee</span>
                       </a>
                   </li>
+                  {{-- Set Employee Address --}}
+                  <li>
+
+                      <a href="{{ route('address.index')}}">
+                          <i class="fa fa-user"></i>
+                          <span>Employee Address</span>
+                      </a>
+                  </li>
                   {{-- Employee List --}}
                   <li>
 

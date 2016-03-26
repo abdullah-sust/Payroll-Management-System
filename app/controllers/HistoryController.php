@@ -107,9 +107,11 @@ class HistoryController extends \BaseController {
 		$history->salary = Helper::calculation($data['user_id']);
 
 		if($history->save()){
+
 			return Redirect::route('history.index')->with('success',"Record Added Successfully");
 		} else {
 			return Redirect::route('history.create')->with('error',"Something went wrong.Try again");
+
 		}
 	}
 
