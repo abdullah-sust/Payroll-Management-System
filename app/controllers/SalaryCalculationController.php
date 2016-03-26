@@ -25,7 +25,11 @@ class SalaryCalculationController extends \BaseController {
 
 		//return 'fkjf';
 		//$id = Input::get('user_id');
+		if(!User::where('employeeID', $id)->exists()) {
+			return Redirect::route('dashboard')->withErrors('The Employee ID you provided does not exist.Please, Search with a valid ID');
+		}
 		$status = User::where('employeeID', $id)->first(); // $idd is employee id here
+		
 		$id = User::where('employeeID', $id)->pluck('id'); // this is user id 
 		$salary = Helper::calculation($id);
 		return View::make('calculation.show')

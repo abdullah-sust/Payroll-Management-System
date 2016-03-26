@@ -20,7 +20,7 @@
                     <div class="form-group">
                         {{ Form::label('first_name', 'First Name*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('first_name', null, array('class' => 'form-control',  'placeholder' => 'Employee First Name', 'required')) }}
+                            {{ Form::text('first_name', null, array('class' => 'form-control',  'placeholder' => 'First Name', 'required')) }}
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         {{ Form::label('email', 'Email Address*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::email('email', null, array('class' => 'form-control', 'placeholder' => 'Employee Email Address', 'required')) }}
+                            {{ Form::email('email', null, array('class' => 'form-control', 'placeholder' => 'Email Address', 'required')) }}
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         {{ Form::label('nid', 'National ID', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('nid', null, array('class' => 'form-control', 'placeholder' => 'National ID', 'required')) }}
+                            {{ Form::text('nid', null, array('class' => 'form-control', 'placeholder' => '', 'required')) }}
                         </div>
                     </div>
 
@@ -85,7 +85,7 @@
                     <div class="form-group">
                         {{ Form::label('marital_status', 'Marital Status', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::radio('marital_status', 'Unmarried') }}<span> Unmarried</span><br>
+                            {{ Form::radio('marital_status', 'Unmarried', true) }}<span> Unmarried</span><br>
                             {{ Form::radio('marital_status', 'Married' ) }} <span> Married</span>
                         </div>
                     </div>

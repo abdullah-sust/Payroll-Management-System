@@ -134,7 +134,7 @@ class EmployeeController extends \BaseController {
 			$selectedbg = $employee->blood_group;
 			return View::make('employee.edit')
 						->with('employee',$employee)
-						->with('title','Edit Employee Name')
+						->with('title','Edit Employee Info')
 						->with('email', $email)
 						->with('blood_group', $bg)
 						->with('user_id', $id)
@@ -207,8 +207,24 @@ class EmployeeController extends \BaseController {
 		
 	}
 
+	public function destroy($id)
+	{
+		try{
+			$user_id = Profile::find($id)->user_id;
+			User::destroy($user_id);
+
+			return Redirect::route('employee.index')->with('success','Employee Deleted Successfully.');
+
+		}catch(Exception $ex){
+			return Redirect::route('employee.index')->with('error','Something went wrong.Try Again.');
+		}
+	}
+
 	public function search() {
 		$id = Input::get('id');
+		if(!User::where('employeeID', $id)->exists()) {
+			return Redirect::route('dashboard')->withErrors('The Employee ID you provided does not exist.Please, Search with a valid ID');
+		}
 		$status = User::where('employeeID', $id)->first(); // $d is employee id here
 		$id = User::where('employeeID', $id)->pluck('id'); // this is user id 
 		$salary = Helper::calculation($id);

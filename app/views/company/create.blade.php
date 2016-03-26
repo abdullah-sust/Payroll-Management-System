@@ -18,7 +18,7 @@
                     <!-- input for name-->
 
                     <div class="form-group">
-                        {{ Form::label('user_id', 'Employee Email*', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('user_id', 'Employee ID*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::select('user_id', $users, '',array('class' => 'form-control')) }}
                         </div>
@@ -47,7 +47,7 @@
                     <div class="form-group">
                         {{ Form::label('join_date', 'Join date*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('join_date', null, array('class' => 'form-control',  'placeholder' => 'mm/dd/yyyy', 'id' => 'join_date' )) }}
+                            {{ Form::text('join_date', null, array('class' => 'form-control', 'required')) }}
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@
                     <div class="form-group">
                         {{ Form::label('contribution', 'Contribution', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('contribution', null, array('class' => 'form-control',  'placeholder' => 'Contribution')) }}
+                            {{ Form::textarea('contribution', null, array('class' => 'form-control',  'placeholder' => '')) }}
                         </div>
                     </div>
 
@@ -95,10 +95,10 @@
 
     <script>
     $(document).on('ready', function() {
-        $("#input-4").fileinput({showCaption: false});
-        /*$("#date").datepicker({
+        
+       /* $("#join_date").datepicker({
                 format: 'yyyy-mm-dd'
-            });*/
+            }); */
             $( "#join_date" ).datepicker( "setDate", new Date() ); 
     });
     </script>    

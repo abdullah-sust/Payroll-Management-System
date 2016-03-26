@@ -24,7 +24,7 @@ class SalaryController extends \BaseController {
 	 */
 	public function create()
 	{
-		$users = User::lists('email', 'id');
+		$users = User::lists('employeeID', 'id');
 		return View::make('salary.create')
 						->with('title', 'Create New Salary')
 						->with('userId', $users);
@@ -56,7 +56,7 @@ class SalaryController extends \BaseController {
 		}
 
 		if(SalaryRank::where('user_id', $data['user_id'])->exists()) {
-			return Redirect::back()->withErrors('This Employee is already assigned Basic & Bonus');
+			return Redirect::back()->withInput()->withErrors('This Employee is already assigned Basic & Bonus');
 		}
 
 
@@ -100,7 +100,7 @@ class SalaryController extends \BaseController {
 			$salary = SalaryRank::findOrFail($id);
 			return View::make('salary.edit')
 						->with('salary',$salary )
-						->with('title','Edit Designation Name');
+						->with('title','Edit Salary Status');
 		}catch(Exception $ex){
 			return Redirect::route('salary.index')->with('error','Something went wrong.Try Again.');
 		}

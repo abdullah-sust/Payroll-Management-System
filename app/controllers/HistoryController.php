@@ -53,7 +53,7 @@ class HistoryController extends \BaseController {
 			'0' => 'Not Paid',
 			'1' => 'Paid',
 			];
-		$users = User::lists('email','id');
+		$users = User::lists('employeeID','id');
 		$month = [
 			'1' => 'January',
 			'2' => 'February',
@@ -71,7 +71,7 @@ class HistoryController extends \BaseController {
 
 		return View::make('history.create')
 					->with('userID',$users)
-					->with('title','Employee Payment')
+					->with('title','Add Employee Payment Record')
 					->with('status', $status)
 					->with('month',$month);
 	}
@@ -136,7 +136,31 @@ class HistoryController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$status = [
+			'0' => 'Not Paid',
+			'1' => 'Paid',
+		];
+
+		$month = [
+			'1' => 'January',
+			'2' => 'February',
+			'3' => 'March',
+			'4' => 'April',
+			'5' => 'May',
+			'6' => 'June',
+			'7' => 'July',
+			'8' => 'August',
+			'9' => 'September',
+			'10' => 'October',
+			'11' => 'November',
+			'12' => 'December'	
+		];
+		$history = History::find($id);
+		return View::make('history.edit')
+					->with('title','Modify Record')
+					->with('status', $status)
+					->with('history', $history)
+					->with('month',$month);
 	}
 
 	/**
@@ -148,7 +172,31 @@ class HistoryController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$rules = [
+
+			'year'    => 'required',
+			'month'   => 'required',
+			'status'  => 'required'
+		];
+
+		$data = Input::all();
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$history = History::find($id);
+		$history->year = $data['year'];
+		$history->month = $data['month'];
+		$history->status =$data['status'];
+		if($history->save()){
+
+			return Redirect::route('history.index')->with('success',"Record Modified Successfully");
+		} else {
+			return Redirect::route('history.create')->with('error',"Something went wrong.Try again");
+
+		}
 	}
 
 	/**

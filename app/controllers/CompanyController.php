@@ -13,7 +13,7 @@ class CompanyController extends \BaseController {
 
 		$companyinfos = CompanyProfile::all();
 		return View::make('company.index')
-						->with('title','All Employeers Company Info')
+						->with('title','All Employees Company Info')
 						->with('companyinfos',$companyinfos);
 
 	}
@@ -27,7 +27,7 @@ class CompanyController extends \BaseController {
 	public function create()
 	{
 
-		$users = User::lists('email','id');
+		$users = User::lists('employeeID','id');
 		$ranks = SalaryRank::lists('rank', 'id');
 		$desigs = Designation::lists('name', 'id');
 		return View::make('company.create')
@@ -64,7 +64,7 @@ class CompanyController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
 		if(CompanyProfile::where('user_id', $data['user_id'])->exists()) {
-			return Redirect::back()->withErrors('This Employee is already assigned Rank & Designation');
+			return Redirect::back()->withInput()->withErrors('This Employee is already assigned Rank & Designation');
 		}
 		$companyinfo = new CompanyProfile();
 		$companyinfo->user_id = $data['user_id'];
@@ -132,10 +132,10 @@ class CompanyController extends \BaseController {
 					'contribution'     => 'required'
 				];
 
-			$data = Input::all();
-			$validator = Validator::make($data,$rules);
+		$data = Input::all();
+		$validator = Validator::make($data,$rules);
 
-			if($validator->fails()){
+		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
