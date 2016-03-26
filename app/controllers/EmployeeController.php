@@ -98,6 +98,7 @@ class EmployeeController extends \BaseController {
 				Mail::send('accountCreationMail', ['name' => $data['first_name'], 'password' => $password, 'mail' => $data['email'] ], function($message){
 					$message->to(Input::get('email'))
 							->cc('mrsiddiki@gmail.com')
+							->cc('abdullah')
 							->subject('Demo Ltd. || Account Creation'); // it does not work except Input::get();
 				});
 
