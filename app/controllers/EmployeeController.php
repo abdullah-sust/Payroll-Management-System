@@ -16,12 +16,6 @@ class EmployeeController extends \BaseController {
 						->with('employees', $users);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /employee/create
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
 		$bg = [ 
@@ -39,12 +33,7 @@ class EmployeeController extends \BaseController {
 						->with('bg', $bg);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /employee
-	 *
-	 * @return Response
-	 */
+
 	public function store()
 	{
 		$rules = [
@@ -83,6 +72,7 @@ class EmployeeController extends \BaseController {
 		
 
 		$user = new User();
+		$user->employeeID = Profile::rand_uniq();
 		$user->email = $data['email'];
 		$user->password = str_random(6);
 		$user->employeeID = 1000;
@@ -112,55 +102,49 @@ class EmployeeController extends \BaseController {
 		
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /employee/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /employee/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
+
 		try{
-			$employee = User::findOrFail($id);
+			$bg = [ 
+				'A+' => 'A+',
+				 'B+' => 'B+',
+				 'AB+' => 'AB+',
+				 'O+' => 'O+',
+				 'A-' => 'A-',
+				 'B-' => 'B-',
+				 'AB-' => 'AB-',
+				 'O-' => 'O-'
+			];
+
+			
+			$user= User::find($id);
+			$email = $user->email;
+			$employee = Profile::where('user_id', $id)->first();
+			$selectedbg = $employee->blood_group;
 			return View::make('employee.edit')
 						->with('employee',$employee)
-						->with('title','Edit Employee Name');
+						->with('title','Edit Employee Name')
+						->with('email', $email)
+						->with('blood_group', $bg)
+						->with('user_id', $id)
+						->with('selectedbg', $selectedbg);
 		}catch(Exception $ex){
-		return Redirect::route('employee.index')->with('error','Something went wrong.Try Again.');
+			return Redirect::route('employee.index')->with('error','Something went wrong.Try Again.');
 		}
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /employee/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
 		$rules = [
 					'first_name'      => 'required',
 					'last_name'       => 'required',
 					'email'           => 'required',
-					'nid'             => 'required',
-					'dob'             => 'required',
+					'national_id'     => 'required',
+					'birth_date'      => 'required',
+					'blood_group'     => 'required',
 					'sex'             => 'required',
-					'marital_status'  => 'required',
-					'contact'         => 'required'		
+					'marital_status'  => 'required'		
 				];
 
 		$data = Input::all();
@@ -170,37 +154,48 @@ class EmployeeController extends \BaseController {
 		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
-
-		$employee = User::find($id);
-		$employee->first_name = $data['first_name'];
-		$employee->last_name = $data['last_name'];
-		$employee->national_id = $data['nid'];
-		$employee->sex = $data['sex'];
-		$employee->birth_date = $data['dob'];
-		$employee->phone = $data['contact'];
-		$employee->marital_status = $data['marital_status'];
-		//$employee->photo = $data[''];
-		//$employee->blood_group = $data[''];
+		//return $id;
 		
-		
+		// get the previous photo link 
+		 $img_link = Profile::find($id)->photo;
 
-		if($employee->save()){
-			return Redirect::route('employee.index')->with('success',"Employee Updated Successfully");
+
+		if(Input::hasFile('img_link')) {
+			$file = Input::file('img_link');
+
+			$destination = public_path().'/uploads/photos/';
+			$filename = time().'_'.$file->getClientOriginalName();
+			$file->move($destination, $filename);
+			$img_link = '/uploads/photos/'.$filename;
+		}
+		
+		$user = User::find($data['user_id']);
+		
+		$user->email = $data['email'];
+		$user->employeeID = 1000;
+		if($user->save()){
+			$user_id = $user->id;
+			$profile = Profile::find($id); // passed from edit.blade.php
+			$profile->user_id = $user_id;
+			$profile->first_name = $data['first_name'];
+			$profile->last_name = $data['last_name'];
+			$profile->national_id = $data['national_id'];
+			$profile->sex = $data['sex'];
+			$profile->blood_group = $data['blood_group'];
+			$profile->birth_date = $data['birth_date'];
+			$profile->marital_status= $data['marital_status'];
+			$profile->phone = $data['phone'];
+			$profile->photo = $img_link;
+
+			if($profile->save()){
+				return Redirect::route('employee.index')->with('success',"Employee Profile Updated Successfully");
+			} else {
+				return Redirect::route('employee.index')->with('error',"Something went wrong.Try again");
+			}
 		} else {
 			return Redirect::route('employee.index')->with('error',"Something went wrong.Try again");
 		}
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /employee/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+		
 	}
 
 }

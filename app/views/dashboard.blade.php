@@ -1,14 +1,82 @@
 @extends('layouts.default')
     @section('content')
         @include('includes.alert')
-        <h1>Welcome , <?php
-                            $email  = Auth::user()->email;
-                    //       $domain = strstr($email, '@');
-                    //        echo $domain; // prints @example.com
+          <section class="wrapper">
 
-                            $user = strstr($email, '@', true); // As of PHP 5.3.0
-                            echo $user; // prints name
-                          ?>  
-         </h1>
+                <!-- search area ---->
+               <form class="form-horizontal search-result">
+                          <div class="form-group">
+                              <label class="col-lg-1 col-sm-1 control-label">Search</label>
+                              <div class="col-lg-8 col-sm-8">
+                                  <input type="text" class="form-control input-xxlarge">
+                                  <p class="help-block">About 5,880,000 results (0.23 seconds) </p>
+                              </div>
+                              <div class="col-lg-2">
+                                  <button class="btn " type="submit">SEARCH</button>
+                              </div>
+                          </div>
+                      </form>
+                <!-- end search area >  
+
+              <!--state overview start-->
+              <div class="row state-overview">
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol terques">
+                              <i class="fa fa-user"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="count">
+                                  {{ count(User::all()) }}
+                              </h1>
+                              <p>Employees</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol red">
+                              <i class="fa fa-tags"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count2">
+                                  0
+                              </h1>
+                              <p>Sales</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol yellow">
+                              <i class="fa fa-shopping-cart"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count3">
+                                  0
+                              </h1>
+                              <p>New Order</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol blue">
+                              <i class="fa fa-bar-chart-o"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count4">
+                                  0
+                              </h1>
+                              <p>Total Profit</p>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              <!--state overview end-->
+
+
+          </section>
+      <!--main content end-->
          
 @stop

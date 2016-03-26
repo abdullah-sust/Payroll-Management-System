@@ -22,7 +22,7 @@ class ProfileTableSeeder extends Seeder {
 				'birth_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
 				'marital_status' => 'Unmarried',
 				'phone'     => $faker->phoneNumber,
-				'photo'     => 'uploads/image/defaultAvatar.png',
+				'photo'     => $faker->imageUrl($width = 640, $height = 480),
 				'created_at' => $faker->dateTime($max ='now'),
 				'updated_at' => $faker->dateTime($max ='now')
 			]);

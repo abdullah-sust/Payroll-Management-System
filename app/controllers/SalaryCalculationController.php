@@ -20,9 +20,16 @@ class SalaryCalculationController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function showStatusFull($id)
 	{
-		//
+
+		//$id = Input::get('user_id');
+		$status = User::find($id);
+		$salary = Helper::calculation($id);
+		return View::make('calculation.show')
+						->with('status', $status)
+						->with('title', 'Info of')
+						->with('salary', $salary);
 	}
 
 	/**
@@ -43,10 +50,17 @@ class SalaryCalculationController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show()
+	public function showStatus()
 	{
+		$data = Input::all();
 		$id = Input::get('user_id');
-		return User::find($id);
+		$status = User::find($id);
+		$salary = Helper::calculation($id);
+		return View::make('calculation.show')
+						->with('status', $status)
+						->with('title', 'Info of')
+						->with('salary', $salary);
+		//return User::find($id);
 	}
 
 	/**

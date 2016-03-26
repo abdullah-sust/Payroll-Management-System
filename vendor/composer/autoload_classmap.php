@@ -42,6 +42,7 @@ return array(
     'RewardController' => $baseDir . '/app/controllers/RewardController.php',
     'Role' => $baseDir . '/app/models/Role.php',
     'RolesTableSeeder' => $baseDir . '/app/database/seeds/RolesTableSeeder.php',
+    'SalaryCalculationController' => $baseDir . '/app/controllers/SalaryCalculationController.php',
     'SalaryController' => $baseDir . '/app/controllers/SalaryController.php',
     'SalaryRank' => $baseDir . '/app/models/SalaryRank.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',

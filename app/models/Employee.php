@@ -2,5 +2,5 @@
 
 class Employee extends \Eloquent {
 	protected $fillable = [];
-	protected $table = 'profiles';
+//	protected $table = 'profiles';
 }

@@ -14,12 +14,9 @@
                 </header>
                 <div class="panel-body">
                    
-
-                    {{ Form::model($employee,['route' => ['employee.update',$employee->id], 'class' => 'form-horizontal', 'method' => 'put' ])}}
-
+                    {{ Form::model($employee,['route' => ['employee.update',$employee->id], 'class' => 'form-horizontal', 'method' => 'put','files' => true ])}}
                     
-
-                 <!-- input for tiltle -->
+                 <!-- input for First Name -->
 
                             <div class="form-group">
                                 {{ Form::label('first_name', 'First Name*', array('class' => 'col-md-2 control-label')) }}
@@ -28,12 +25,12 @@
                                 </div>
                             </div>
 
-                <!-- input for tiltle -->
+                <!-- input for Last Name -->
 
                             <div class="form-group">
                                 {{ Form::label('last_name', 'Last Name*', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
-                                    {{ Form::text('last_name', null, array('class' => 'form-control', 'required')) }}
+                                    {{ Form::text('last_name',  null, array('class' => 'form-control', 'required')) }}
                                 </div>
                             </div>
                 <!-- input for tiltle -->
@@ -41,16 +38,16 @@
                             <div class="form-group">
                                 {{ Form::label('email', 'Email Address*', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
-                                    {{ Form::text('email', null, array('class' => 'form-control', 'required')) }}
+                                    {{ Form::text('email',$email, array('class' => 'form-control', 'required')) }}
                                 </div>
                             </div>
 
                <!-- input for tiltle -->
 
                             <div class="form-group">
-                                {{ Form::label('nid', 'National ID*', array('class' => 'col-md-2 control-label')) }}
+                                {{ Form::label('national_id', 'National ID*', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
-                                    {{ Form::text('nid', null, array('class' => 'form-control', 'required')) }}
+                                    {{ Form::text('national_id', null, array('class' => 'form-control', 'required')) }}
                                 </div>
                             </div>
 
@@ -59,18 +56,28 @@
                         <div class="form-group">
                         {{ Form::label('sex', 'Sex*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::radio('sex', 'Female', array('class' => 'form-control', 'required')) }} Female<br>
-                            {{ Form::radio('sex', 'Male', array('class' => 'form-control', 'required')) }} Male
+                            {{ Form::radio('sex', 'Female', array('class' => 'form-control')) }} Female<br>
+                            {{ Form::radio('sex', 'Male', array('class' => 'form-control')) }} Male
                         </div>
-                    </div>
+                        </div>
+
+                    <!-- input for blood_group -->           
+
+                        <div class="form-group">
+                            {{ Form::label('blood_group', 'Blood Group', array('class' => 'col-md-2 control-label')) }}
+                            <div class="col-md-4">
+                                {{ Form::select('blood_group',$blood_group,null, array('class' => 'form-control', 'required')) }}
+                            </div>
+                        </div>
+
 
 
                 <!-- input for tiltle -->
 
                             <div class="form-group">
-                                {{ Form::label('dob', 'Date of Birth', array('class' => 'col-md-2 control-label')) }}
+                                {{ Form::label('birth_date', 'Date of Birth', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
-                                    {{ Form::text('dob', null, array('class' => 'form-control', 'required')) }}
+                                    {{ Form::text('birth_date', null, array('class' => 'form-control', 'required')) }}
                                 </div>
                             </div>
 
@@ -79,17 +86,36 @@
                             <div class="form-group">
                                 {{ Form::label('marital_status', 'Marital Status*',array( 'class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
-                            {{ Form::radio('marital_status', 'Unmarried', array('class' => 'form-control', 'required')) }}<span> Unmarried</span><br>
-                            {{ Form::radio('marital_status', 'Married', array('class' => 'form-control', 'required')) }} <span> Married</span>
+                            {{ Form::radio('marital_status', 'Unmarried', array('class' => 'form-control')) }}<span> Unmarried</span><br>
+                            {{ Form::radio('marital_status', 'Married', array('class' => 'form-control')) }} <span> Married</span>
                         </div>
                             </div>
 
                 <!-- input for tiltle -->
 
                             <div class="form-group">
-                                {{ Form::label('contact', 'Contact number', array('class' => 'col-md-2 control-label')) }}
+                                {{ Form::label('phone', 'Contact number', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
-                                    {{ Form::text('contact', null, array('class' => 'form-control', 'required')) }}
+                                    {{ Form::text('phone', null, array('class' => 'form-control', 'required')) }}
+                                </div>
+                            </div>
+
+                <!-- hidden form -->
+
+                            <div class="form-group">
+                                {{ Form::label('user_id', 'Contact number', array('class' => 'col-md-2 control-label')) }}
+                                <div class="col-md-4">
+                                    {{ Form::text('user_id', $user_id, array('class' => 'form-control')) }}
+                                </div>
+                            </div>
+                 <!-- image upload  -->
+                            <div class="form-group">
+                                {{ Form::label('img_link', "Change Profile Picture", array('class' => 'col-md-2 control-label')) }}
+                                <div class="col-md-4">
+                                    <div id="preimg">
+                                    {{ HTML::image($employee->img_link, 'profile picture', [ 'class'=> 'img-responsive', 'width' => '230' , 'height' => '236']) }}<br>
+                                    </div>
+                                    {{ Form::file('img_link', array( 'class' => 'file-loading' , 'multiple'=>false, 'id' => 'input-4' )) }}
                                 </div>
                             </div>
 
@@ -101,6 +127,9 @@
                                 </div>
                             </div>
 
+                    
+
+
                     {{ Form::close() }}
                        
 
@@ -108,4 +137,36 @@
             </section>
         </div>
     </div>
+@stop
+
+@section('style')
+ 
+    {{ HTML::style('rename/css/fileinput.min.css') }}
+
+@stop
+
+@section('script')
+
+
+    {{ HTML::script('rename/js/fileinput_locale_<lang>.js') }}
+    {{ HTML::script('rename/js/fileinput.min.js') }}
+ 
+
+    <script>
+    $(document).on('ready', function() {
+        $("#input-4").fileinput({showCaption: false});
+    });
+    </script>
+
+    <script>
+        $(document).on('ready', function() {
+            $("#input-4").click(function(){
+                $("#preimg").fadeOut("1000");
+                
+              //  $("#div2").fadeOut("slow");
+             //   $("#div3").fadeOut(3000);
+            });
+        });
+    </script>
+
 @stop

@@ -101,8 +101,12 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('salarycalculation/{id}',['as' => 'calculation.search', 'uses' => 'SalaryCalculationController@search']);
 
 
+	Route::post('status/show', ['as' => 'status.show', 'uses' => 'SalaryCalculationController@showStatus']);
 	Route::get('salarycalculation/show',['as' => 'calculation.show', 'uses' => 'SalaryCalculationController@show']);
 
 	Route::get('history',['as' => 'history.index', 'uses' => 'HistoryController@index']);
 	Route::get('history',['as' => 'history.create', 'uses' => 'HistoryController@create']);
+
+	Route::get('employee/show/{id}', ['as' => 'status.full.show', 'uses' => 'SalaryCalculationController@showStatusFull']);
+
 });

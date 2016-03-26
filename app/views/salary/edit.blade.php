@@ -5,7 +5,7 @@
             @include('includes.alert')
             <section class="panel">
                 <header class="panel-heading">
-                    {{ $title }}
+                    <b>{{ $title }} || Employee ID: <span style="color:green">{{ $salary->user->employeeID }}</span> || Name: <span style="color:green">{{ $salary->user->profile->first_name }} {{ $salary->user->profile->last_name }}</span></b>
                     <span class="pull-right">
 
                             <a class="btn btn-success btn-sm" href="{{ URL::route('salary.index') }}">All Salary</a>
