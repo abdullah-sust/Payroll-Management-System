@@ -15,9 +15,9 @@
                         <table class="display table table-bordered table-striped" id="example">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Rank ID</th>
-                                <th>Designation ID</th>
+                                <th class="text-center">Employee ID</th>
+                                <th>Rank</th>
+                                <th>Designation</th>
                                 <th>Join Date</th>
                                 <th>Contribution</th>                   
                                 <th class="text-center">Actions</th>
@@ -26,9 +26,9 @@
                             <tbody>
                             @foreach($companyinfos as $companyinfo)
                                 <tr>
-                                    <td>{{ $companyinfo->id}}</td>
+                                    <td class="text-center">{{ $companyinfo->user->employeeID}}</td>
                                     <td>{{ $companyinfo->rank_id}}</td>
-                                    <td>{{ $companyinfo->designation_id}}</td>
+                                    <td>{{ $companyinfo->designation->name}}</td>
                                     <td>{{ $companyinfo->join_date}}</td>
                                     <td>{{ $companyinfo->contribution}}</td>
                                     <td class="text-center">

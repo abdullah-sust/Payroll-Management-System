@@ -63,7 +63,9 @@ class CompanyController extends \BaseController {
 		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
-
+		if(CompanyProfile::where('user_id', $data['user_id'])->exists()) {
+			return Redirect::back()->withErrors('This Employee is already assigned Rank & Designation');
+		}
 		$companyinfo = new CompanyProfile();
 		$companyinfo->user_id = $data['user_id'];
 		$companyinfo->rank_id = $data['rank'];
@@ -108,7 +110,7 @@ class CompanyController extends \BaseController {
 						->with('companyinfo',$companyinfo)
 						->with('ranks',$ranks)
 						->with('desigs',$desigs)
-						->with('title','Edit Company Info Name');
+						->with('title','Edit Company Info of');
 		}catch(Exception $ex){
 			return Redirect::route('companyinfo.index')->with('error','Something went wrong.Try Again.!!');
 		}

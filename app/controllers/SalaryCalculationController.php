@@ -20,9 +20,16 @@ class SalaryCalculationController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function showStatusFull($id)
 	{
-		//
+
+		//$id = Input::get('user_id');
+		$status = User::find($id);
+		$salary = Helper::calculation($id);
+		return View::make('calculation.show')
+						->with('status', $status)
+						->with('title', 'Info of')
+						->with('salary', $salary);
 	}
 
 	/**

@@ -30,8 +30,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasOne('Profile', 'user_id', 'id');
 	}
 
-	public function company_profile() {
-		return $this->hasOne('\CompanyProfile', 'user_id', 'id');
+	public function companyprofile() {
+		return $this->hasOne('CompanyProfile', 'user_id', 'id');
 	}
 
 	public function reward() {
@@ -47,7 +47,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function address() {
-		return $this->hasMany('Address', 'user_id', 'id');
+		return $this->hasOne('Address', 'user_id', 'id');
 	}
 
 

@@ -21,8 +21,8 @@ class CreateRewardTable extends Migration {
 									->onDelete('cascade')
 									->onUpdate('cascade');
 									
-			$table->float('fine',10,2);
-			$table->float('extra_pay',10,2);
+			$table->float('fine',10,2)->default(0.00);
+			$table->float('extra_pay',10,2)->default(0.00);
 			$table->timestamps();
 		});
 	}

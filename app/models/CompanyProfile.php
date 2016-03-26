@@ -9,7 +9,11 @@ class CompanyProfile extends \Eloquent {
 	}
 
 	public function designation() {
-		return $this->belongsTo('Designation', 'rank_id', 'id');
+		return $this->belongsTo('Designation', 'designation_id', 'id');
+	}
+
+	public function rank() {
+		return $this->belongsTo('SalaryRank', 'rank_id', 'id');
 	}
 
 }

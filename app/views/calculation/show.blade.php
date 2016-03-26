@@ -47,9 +47,7 @@
                                               <h3>Position</h3>
                                           </div>
                                           <div class="bio-desk">
-                                              <h4 class="red">Envato Website</h4>
-                                              <p>Started : 15 July</p>
-                                              <p>Deadline : 15 August</p>
+                                              <h3 style="color:green">{{ $status->companyprofile->designation->name }}</h3>
                                           </div>
                                       </div>
                                   </div>
@@ -61,9 +59,7 @@
                                               <h3>Rank</h3>
                                           </div>
                                           <div class="bio-desk">
-                                              <h4 class="terques">ThemeForest CMS </h4>
-                                              <p>Started : 15 July</p>
-                                              <p>Deadline : 15 August</p>
+                                              <h3 style="color:purple">{{ $status->companyprofile->rank->rank }}</h3>
                                           </div>
                                       </div>
                                   </div>
@@ -75,9 +71,7 @@
                                               <h3>Current Salary</h3>
                                           </div>
                                           <div class="bio-desk">
-                                              <h4 class="green">VectorLab Portfolio</h4>
-                                              <p>Started : 15 July</p>
-                                              <p>Deadline : 15 August</p>
+                                              <h3 style="color:green">{{ $salary }}</h3>
                                           </div>
                                       </div>
                                   </div>
@@ -89,9 +83,7 @@
                                               <h3>Join Date</h3>
                                           </div>
                                           <div class="bio-desk">
-                                              <h4 class="purple">Adobe Muse Template</h4>
-                                              <p>Started : 15 July</p>
-                                              <p>Deadline : 15 August</p>
+                                              <h3 style="color:green">{{ $status->companyprofile->join_date }}</h3>
                                           </div>
                                       </div>
                                   </div>
@@ -120,48 +112,6 @@
               </div>
 
               <!-- page end-->
-
-
-
-
-            <section class="panel">
-                <header class="panel-heading clearfix">
-                    <h4>{{ $title }}</h4>
-                    <span class="pull-left">
-                        <h3>EmployeeID::{{ $status->employeeID }}</h3>
-                    </span>
-                    <span class="pull-right">
-                            <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('calculation.index') }}">Search Again</a>
-                    </span>
-                </header>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h4><b> Employee Name:</b> {{ $status->profile->first_name }} {{ $status->profile->last_name }}</h4><br>
-                            <h4><b> Description:</b> {{-- $status --}}</h4><br>
-                            <h4><b> Price of the status ( BDT ) : </b> {{ $status }}</h4><br>
-                            <h4><b> Current Salary </b> {{ $salary }}</h4><br>
-                        </div>
-                        <div class="col-md-4">
-                            {{ HTML::image($status->profile->photo, 'photo', ['class'=> 'img-responsive', 'width' => '230' , 'height' => '236']) }}
-                        </div>
-                    
-                    </div>
-                
-                    <span class="pull-left">
-                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('calculation.index', array('id' => $status->id)) }}">Edit Info</a>
-
-                    </span>
-                    <br>
-                    <span class="pull-right">
-                       
-
-                    </span>
-                </div>
-            </section>
-        </div>
-    </div>
-
 
 
 
