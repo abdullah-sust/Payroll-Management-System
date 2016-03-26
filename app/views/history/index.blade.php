@@ -18,7 +18,7 @@
                                 <th>Employee ID</th>
                                 <th>Year</th>
                                 <th>Month</th>
-                                <th>Salary</th>                   
+                                <th>How Much</th>                   
                                 <th>Status</th>
                             </tr>
 
@@ -28,9 +28,9 @@
                                 <tr>
                                     <td>{{ $history->user->employeeID }}</td>
                                     <td>{{ $history->year }} </td>
-                                    <td>{{ $history->month }}</td>
+                                    <td>{{ $month[$history->month] }}</td>
                                     <td>{{ $history->salary }}</td>
-                                    <td>{{ $history->status }}</td>
+                                    <td>{{ $status[$history->status] }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

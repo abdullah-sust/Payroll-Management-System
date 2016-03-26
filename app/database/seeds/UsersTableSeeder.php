@@ -9,12 +9,14 @@ class UsersTableSeeder extends Seeder {
 	{
 		$users = [
 					[
+								'employeeID'      => '100101',
 								'email'      => 'mrsiddiki@gmail.com',
 								'password'   => Hash::make('a'),
 								'created_at' => date('Y-m-d H:i:s'),
 								'updated_at' => date('Y-m-d H:i:s')
 					],
 					[
+								'employeeID'      => '100102',
 								'email'      => 'abdullahalawal177@gmail.com',
 								'password'   => Hash::make('a'),
 								'created_at' => date('Y-m-d H:i:s'),
@@ -26,12 +28,12 @@ class UsersTableSeeder extends Seeder {
 		DB::table('users')->insert($users);
 
 		$faker = Faker::create();
-		for ($i=1; $i < 199; $i++) {
+		for ($i=3; $i < 199; $i++) {
 		
 			User::create([
 				'EmployeeID' => 100100+$i,
-				'email'  =>$faker->email,
-				'password' => $faker->password,
+				'email'  => $faker->email,
+				'password' => Hash::make('1234'),
 				'created_at' => $faker->dateTime($max ='now'),
 				'updated_at' => $faker->dateTime($max ='now')
 			]);

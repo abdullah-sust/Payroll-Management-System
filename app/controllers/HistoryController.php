@@ -15,24 +15,7 @@ class HistoryController extends \BaseController {
 			'0' => 'Not Paid',
 			'1' => 'Paid',
 			];
-		$data = History::all();
-		return View::make('history.index')
-					->with('title','Employee Payment History & Status')
-					->with('histories',$data)
-					->with('status', $status);
-	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /history/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-
-
-		$users = User::lists('email','id');
 		$month = [
 			'1' => 'January',
 			'2' => 'February',
@@ -48,10 +31,48 @@ class HistoryController extends \BaseController {
 			'12' => 'December'	
 
 		];
+		$data = History::all();
+		return View::make('history.index')
+					->with('title','Employee Payment History & Status')
+					->with('histories',$data)
+					->with('status', $status)
+					->with('month', $month);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 * GET /history/create
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+
+		$status = [
+
+			'0' => 'Not Paid',
+			'1' => 'Paid',
+			];
+		$users = User::lists('email','id');
+		$month = [
+			'1' => 'January',
+			'2' => 'February',
+			'3' => 'March',
+			'4' => 'April',
+			'5' => 'May',
+			'6' => 'June',
+			'7' => 'July',
+			'8' => 'August',
+			'9' => 'September',
+			'10' => 'October',
+			'11' => 'November',
+			'12' => 'December'	
+		];
 
 		return View::make('history.create')
 					->with('userID',$users)
 					->with('title','Employee Payment')
+					->with('status', $status)
 					->with('month',$month);
 	}
 
@@ -68,6 +89,7 @@ class HistoryController extends \BaseController {
 			'user_id' => 'required',
 			'year'    => 'required',
 			'month'   => 'required',
+			'status'  => 'required'
 		];
 
 		$data = Input::all();
@@ -81,13 +103,13 @@ class HistoryController extends \BaseController {
 		$history->user_id = $data['user_id'];
 		$history->year = $data['year'];
 		$history->month = $data['month'];
-		$history->status ='Paid';
-		$history->salary = 12345;
+		$history->status =$data['status'];
+		$history->salary = Helper::calculation($data['user_id']);
 
 		if($history->save()){
-			return Redirect::route('history.index');//->with('success',"Employee's History Added Successfully");
+			return Redirect::route('history.index')->with('success',"Record Added Successfully");
 		} else {
-			return Redirect::route('history.index');//->with('error',"Something went wrong.Try again");
+			return Redirect::route('history.create')->with('error',"Something went wrong.Try again");
 		}
 	}
 

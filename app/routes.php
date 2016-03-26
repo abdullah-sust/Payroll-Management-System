@@ -105,8 +105,11 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::post('status/show', ['as' => 'status.show', 'uses' => 'SalaryCalculationController@showStatus']);
 	Route::get('salarycalculation/show',['as' => 'calculation.show', 'uses' => 'SalaryCalculationController@show']);
 
-	Route::get('history',['as' => 'history.index', 'uses' => 'HistoryController@index']);
-	Route::get('history/add',['as' => 'history.create', 'uses' => 'HistoryController@create']);
+	Route::get('payment-history',['as' => 'history.index', 'uses' => 'HistoryController@index']);
+	Route::get('confirm-salary',['as' => 'history.create', 'uses' => 'HistoryController@create']);
+	Route::post('history',['as' => 'history.store', 'uses' => 'HistoryController@store']);
+	Route::get('history/{id}/edit',['as' => 'history.edit', 'uses' => 'HistoryController@edit']);
+	Route::put('history/{id}',['as' => 'history.update', 'uses' => 'HistoryController@update']);
 
 	Route::get('employee/show/{id}', ['as' => 'status.full.show', 'uses' => 'SalaryCalculationController@showStatusFull']);
 	Route::get('employee/search/show/{id}',['as' => 'search.employee.show', 'uses' => 'EmployeeController@search']);

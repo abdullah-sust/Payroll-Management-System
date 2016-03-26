@@ -8,14 +8,14 @@
                     {{ $title }}
                 </header>
                 <div class="panel-body">
-                    {{ Form::open(array('route' => 'history.store', 'class' => 'form-horizontal','files' => true)) }}
+                    {{ Form::open(array('route' => 'history.store', 'class' => 'form-horizontal')) }}
 
         <!-- input for name-->
 
                     <div class="form-group">
                         {{ Form::label('year', 'Year', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('year', null, array('class' => 'form-control',  'placeholder' => '', 'required')) }}
+                            {{ Form::text('year', null, array('class' => 'form-control',  'placeholder' => '2012', 'required')) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -28,6 +28,13 @@
                         {{ Form::label('month', 'Month', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::select('month', $month, '',array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('status', 'Status', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::select('status', $status, '',array('class' => 'form-control')) }}
                         </div>
                     </div>
      
