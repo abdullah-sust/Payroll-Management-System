@@ -22,8 +22,8 @@ class CreateSalaryRankTable extends Migration {
 									->onUpdate('cascade');
 
 			$table->integer('rank')->unsigned();
-			$table->float('basic', 10, 2);
-			$table->integer('bonus');
+			$table->float('basic', 10, 2)->default(0.00);
+			$table->integer('bonus')->default(0);
 			$table->timestamps();
 		});
 	}

@@ -5,7 +5,7 @@
             @include('includes.alert')
             <section class="panel">
                 <header class="panel-heading">
-                    {{ $title }}
+                    {{ $title }} || Employee ID: {{ $companyinfo->user->employeeID }} || Name: {{ $companyinfo->user->profile->first_name }} {{ $companyinfo->user->profile->last_name }}
                     <span class="pull-right">
 
                             <a class="btn btn-success btn-sm" href="{{ URL::route('companyinfo.index') }}">All Company Info</a>
@@ -13,7 +13,6 @@
 					</span>
                 </header>
                 <div class="panel-body">
-                   
 
                     {{ Form::model($companyinfo,['route' => ['companyinfo.update',$companyinfo->id], 'class' => 'form-horizontal', 'method' => 'put' ])}}
 

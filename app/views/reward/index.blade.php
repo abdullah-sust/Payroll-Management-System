@@ -15,7 +15,7 @@
                         <table class="display table table-bordered table-striped" id="example">
                             <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Employee ID</th>
                                 <th>Fine</th>
                                 <th>Extra Payment</th>                   
                                 <th class="text-center">Actions</th>
@@ -24,12 +24,12 @@
                             <tbody>
                             @foreach($rewards as $reward)
                                 <tr>
-                                    <td>{{ $reward->user_id }}</td>
+                                    <td>{{ $reward->user->employeeID }}</td>
                                     <td>{{ $reward->fine}}</td>
                                     <td>{{ $reward->extra_pay}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('reward.edit', array('id' => $reward->user_id)) }}">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $reward->user_id }}">Delete</a>
+                                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('reward.edit', array('id' => $reward->id)) }}">Edit</a>
+                                        <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $reward->id }}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

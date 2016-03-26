@@ -47,7 +47,7 @@
                     <div class="form-group">
                         {{ Form::label('join_date', 'Join date*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('join_date', null, array('class' => 'form-control',  'placeholder' => 'Join date', 'required')) }}
+                            {{ Form::text('join_date', null, array('class' => 'form-control',  'placeholder' => 'mm/dd/yyyy', 'id' => 'join_date' )) }}
                         </div>
                     </div>
 
@@ -74,4 +74,33 @@
             </section>
         </div>
     </div>
+@stop
+
+
+@section('style')
+    {{ HTML::style('assets/bootstrap-datepicker/css/datepicker.css') }}
+
+@stop
+
+
+
+@section('script')
+
+
+    {{ HTML::script('assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}
+
+
+   
+    <!-- image drag&drop and upload plugin  -->
+
+    <script>
+    $(document).on('ready', function() {
+        $("#input-4").fileinput({showCaption: false});
+        /*$("#date").datepicker({
+                format: 'yyyy-mm-dd'
+            });*/
+            $( "#join_date" ).datepicker( "setDate", new Date() ); 
+    });
+    </script>    
+    
 @stop

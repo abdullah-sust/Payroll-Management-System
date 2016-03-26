@@ -55,6 +55,10 @@ class SalaryController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
+		if(SalaryRank::where('user_id', $data['user_id'])->exists()) {
+			return Redirect::back()->withErrors('This Employee is already assigned Basic & Bonus');
+		}
+
 
 		$salary = new SalaryRank();
 		$salary->user_id= $data['user_id'];

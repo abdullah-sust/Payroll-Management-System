@@ -76,7 +76,7 @@
                     <div class="form-group">
                         {{ Form::label('dob', 'Date of Birth', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('dob', null, array('class' => 'form-control', 'placeholder' => 'dd/mm/yyyy', 'id' => 'dob')) }}
+                            {{ Form::text('dob', null, array('class' => 'form-control', 'placeholder' => 'mm/dd/yyyy', 'id' => 'dob')) }}
                         </div>
                     </div>
 
