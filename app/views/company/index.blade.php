@@ -33,7 +33,7 @@
                                     <td>{{ $companyinfo->contribution}}</td>
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('companyinfo.edit', array('id' => $companyinfo->id)) }}">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $companyinfo->id }}">Delete</a>
+                                        <!--a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $companyinfo->id }}">Delete</a-->
                                     </td>
                                 </tr>
                             @endforeach

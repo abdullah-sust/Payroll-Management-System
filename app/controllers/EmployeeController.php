@@ -134,7 +134,7 @@ class EmployeeController extends \BaseController {
 			$selectedbg = $employee->blood_group;
 			return View::make('employee.edit')
 						->with('employee',$employee)
-						->with('title','Edit Employee Name')
+						->with('title','Edit Employee Info')
 						->with('email', $email)
 						->with('blood_group', $bg)
 						->with('user_id', $id)
@@ -205,6 +205,19 @@ class EmployeeController extends \BaseController {
 			return Redirect::route('employee.index')->with('error',"Something went wrong.Try again");
 		}
 		
+	}
+
+	public function destroy($id)
+	{
+		try{
+			$user_id = Profile::find($id)->user_id;
+			User::destroy($user_id);
+
+			return Redirect::route('employee.index')->with('success','Employee Deleted Successfully.');
+
+		}catch(Exception $ex){
+			return Redirect::route('employee.index')->with('error','Something went wrong.Try Again.');
+		}
 	}
 
 	public function search() {

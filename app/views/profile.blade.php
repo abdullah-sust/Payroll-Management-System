@@ -112,6 +112,23 @@
                                       </div>
                                   </div>
                               </div>
+                              <div class="col-lg-6">
+                                  <div class="panel">
+                                      <div class="panel-body">
+                                          <div class="bio-chart">
+                                              <h4>Contribution</h4>
+                                          </div>
+                                          <div class="bio-desk">
+                                            @if(!empty($user->companyprofile->contribution))
+                                              <h4>  {{ $user->companyprofile->contribution }}</h4>
+                                            @else
+                                              ____
+                                            @endif
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
                           </div>
                       </section>
                   </aside>

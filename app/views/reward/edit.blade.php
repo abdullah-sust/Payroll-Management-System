@@ -22,14 +22,14 @@
                  <!-- input for tiltle -->
 
                             <div class="form-group">
-                                {{ Form::label('fine', 'Fine*', array('class' => 'col-md-2 control-label')) }}
+                                {{ Form::label('fine', 'Fine', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
                                     {{ Form::text('fine', null, array('class' => 'form-control', 'required')) }}
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                {{ Form::label('extra_pay', 'Extra Pay*', array('class' => 'col-md-2 control-label')) }}
+                                {{ Form::label('extra_pay', 'Extra Pay', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
                                     {{ Form::text('extra_pay', null, array('class' => 'form-control', 'required')) }}
                                 </div>
