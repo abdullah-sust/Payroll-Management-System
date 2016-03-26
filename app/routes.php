@@ -111,4 +111,11 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('employee/show/{id}', ['as' => 'status.full.show', 'uses' => 'SalaryCalculationController@showStatusFull']);
 	Route::get('employee/search/show/{id}',['as' => 'search.employee.show', 'uses' => 'EmployeeController@search']);
 
+	Route::get('address',['as'=>'address.index','uses'=>'AddressController@index']);
+	Route::get('address/create',['as'=>'address.create','uses'=>'AddressController@create']);
+	Route::post('address/store',['as'=>'address.store','uses'=>'AddressController@store']);
+	Route::get('address/{id}/edit',['as' => 'address.edit', 'uses' => 'AddressController@edit']);
+	Route::delete('address/{id}',['as' => 'address.delete', 'uses' => 'AddressController@destroy']);
+	Route::put('address/{id}',['as' => 'address.update', 'uses' => 'AddressController@update']);
+
 });

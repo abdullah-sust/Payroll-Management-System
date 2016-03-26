@@ -85,9 +85,9 @@ class HistoryController extends \BaseController {
 		$history->salary = 12345;
 
 		if($history->save()){
-			return Redirect::route('history.index');//->with('success',"Employee's History Added Successfully");
+			return Redirect::route('history.index')->with('success',"Employee's History Added Successfully");
 		} else {
-			return Redirect::route('history.index');//->with('error',"Something went wrong.Try again");
+			return Redirect::route('history.index')->with('error',"Something went wrong.Try again");
 		}
 	}
 
