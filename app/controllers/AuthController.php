@@ -89,6 +89,17 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	public function show(){
+		$user = Auth::user();
+		$id = $user->id;
+		$status = User::find($id);
+		$salary = Helper::calculation($id);
+		return View::make('profile')
+						->with('title', 'My Profile')
+						->with('user', $user)
+						->with('salary', $salary);
+	}
+
 
 
 }

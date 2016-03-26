@@ -11,11 +11,11 @@
                     </span>
                 </header>
                 <div class="panel-body">
-                @if(count($historys))
+                @if(count($histories))
                         <table class="display table table-bordered table-striped" id="example">
                             <thead>
                             <tr>
-                                <th>User ID</th>
+                                <th>Employee ID</th>
                                 <th>Year</th>
                                 <th>Month</th>
                                 <th>Salary</th>                   
@@ -24,19 +24,19 @@
 
                             </thead>
                             <tbody>
-                            @foreach($historys as $history)
+                            @foreach($histories as $history)
                                 <tr>
-                                    <td>{{$history->user_id}}</td>
-                                    <td>{{$history->year}}</td>
-                                    <td>{{$history->month}}</td>
-                                    <td>{{$history->salary}}</td>
-                                    <td>{{$history->status}}</td>
+                                    <td>{{ $history->user->employeeID }}</td>
+                                    <td>{{ $history->year }} </td>
+                                    <td>{{ $history->month }}</td>
+                                    <td>{{ $history->salary }}</td>
+                                    <td>{{ $history->status }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         @else
-                        No Data Found
+                            No Data Found
                         @endif
                 </div>
             </section>

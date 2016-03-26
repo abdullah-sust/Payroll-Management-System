@@ -10,10 +10,16 @@ class HistoryController extends \BaseController {
 	 */
 	public function index()
 	{
+		$status = [
+
+			'0' => 'Not Paid',
+			'1' => 'Paid',
+			];
 		$data = History::all();
 		return View::make('history.index')
-					->with('title','Employee History')
-					->with('historys',$data);
+					->with('title','Employee Payment History & Status')
+					->with('histories',$data)
+					->with('status', $status);
 	}
 
 	/**
@@ -40,7 +46,7 @@ class HistoryController extends \BaseController {
 			'12' => 'December'
 			
 
-		]
+		];
 		return View::make('history.create')
 					->with('month',$month);
 	}

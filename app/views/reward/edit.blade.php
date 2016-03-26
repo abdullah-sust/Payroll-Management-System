@@ -5,7 +5,7 @@
             @include('includes.alert')
             <section class="panel">
                 <header class="panel-heading">
-                    {{ $title }} || Employee ID: {{ $reward->user->employeeID }} || Name: {{ $reward->user->profile->first_name }} {{ $reward->user->profile->last_name }}
+                    <b>{{ $title }} || Employee ID: <span style="color:green">{{ $reward->user->employeeID }}</span> || Name: <span style="color:green">{{ $reward->user->profile->first_name }} {{ $reward->user->profile->last_name }}</span></b>
                     <span class="pull-right">
 
                             <a class="btn btn-success btn-sm" href="{{ URL::route('reward.index') }}">All Reward</a>
