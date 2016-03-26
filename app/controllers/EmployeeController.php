@@ -70,12 +70,15 @@ class EmployeeController extends \BaseController {
 			$img_link = '/uploads/photos/'.$filename;
 		}
 		
-
+		$previousUser = DB::table('users')->orderBy('id', 'desc')->get();
+		$previousEmployeeID = $previousUser[0]->employeeID;
+		//$previousEmployeeID = User::('id', $previousUser->id)->pluck('employeeID'); */
 		$user = new User();
 		$user->employeeID = Profile::rand_uniq();
 		$user->email = $data['email'];
-		$user->password = str_random(6);
-		$user->employeeID = 1000;
+		$password = str_random(6);
+		$user->password = Hash::make($password);
+		$user->employeeID = $previousEmployeeID+1;
 		if($user->save()){
 			$user_id = $user->id;
 			$profile = new Profile();
@@ -91,6 +94,13 @@ class EmployeeController extends \BaseController {
 			$profile->photo = $img_link;
 
 			if($profile->save()){
+
+				Mail::send('accountCreationMail', ['name' => $data['first_name'], 'password' => $password, 'mail' => $data['email'] ], function($message){
+					$message->to(Input::get('email'))
+							->cc('mrsiddiki@gmail.com')
+							->subject('Demo Ltd. || Account Creation'); // it does not work except Input::get();
+				});
+
 				return Redirect::route('employee.index')->with('success',"New Employee Added Successfully");
 			} else {
 				return Redirect::route('employee.index')->with('error',"Something went wrong.Try again");
@@ -172,7 +182,6 @@ class EmployeeController extends \BaseController {
 		$user = User::find($data['user_id']);
 		
 		$user->email = $data['email'];
-		$user->employeeID = 1000;
 		if($user->save()){
 			$user_id = $user->id;
 			$profile = Profile::find($id); // passed from edit.blade.php

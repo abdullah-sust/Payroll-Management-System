@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'infancy.itbd@gmail.com', 'name' => 'Infancy Template'),
+	'from' => array('address' => 'noreply@admin.demoltd.com', 'name' => 'Demo Ltd'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'postmaster@sandbox175d9abbdfa34087b499278799f86447.mailgun.org',
+	'username' => 'postmaster@sandbox7d67c0620e204c84b395c0618ff3c788.mailgun.org', // of masiur's 
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'cbf548e2d27cbb1484f7cbf895267eb3',
+	'password' => '438f08ee5c77cabecaf79492109d1455',
 
 	/*
 	|--------------------------------------------------------------------------

@@ -24,7 +24,7 @@ class CreatePaymentHistoryTable extends Migration {
 			$table->integer('year');
 			$table->string('month');
 			$table->float('salary',10,2);
-			$table->string('status');
+			$table->integer('status');
 			$table->timestamps();
 		});
 	}
