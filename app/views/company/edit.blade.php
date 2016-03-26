@@ -5,7 +5,8 @@
             @include('includes.alert')
             <section class="panel">
                 <header class="panel-heading">
-                    {{ $title }} || Employee ID: {{ $companyinfo->user->employeeID }} || Name: {{ $companyinfo->user->profile->first_name }} {{ $companyinfo->user->profile->last_name }}
+                    <b>{{ $title }} || Employee ID: <span style="color:green">{{ $companyinfo->user->employeeID }}</span> || Name: <span style="color:green">{{ $companyinfo->user->profile->first_name }} {{ $companyinfo->user->profile->last_name }}</span></b>
+                    
                     <span class="pull-right">
 
                             <a class="btn btn-success btn-sm" href="{{ URL::route('companyinfo.index') }}">All Company Info</a>

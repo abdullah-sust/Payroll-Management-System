@@ -10,10 +10,16 @@ class HistoryController extends \BaseController {
 	 */
 	public function index()
 	{
+		$status = [
+
+			'0' => 'Not Paid',
+			'1' => 'Paid',
+			];
 		$data = History::all();
 		return View::make('history.index')
-					->with('title','Employee History')
-					->with('historys',$data);
+					->with('title','Employee Payment History & Status')
+					->with('histories',$data)
+					->with('status', $status);
 	}
 
 	/**
@@ -24,22 +30,25 @@ class HistoryController extends \BaseController {
 	 */
 	public function create()
 	{
-		$month = [
 
-			'January' => 'January',
-			'February' => 'February',
-			'March' => 'March',
-			'April' => 'April',
-			'May' => 'May',
-			'June' => 'June',
-			'July' => 'July',
-			'August' => 'August',
-			'September' => 'September',
-			'October' => 'October',
-			'November' => 'November',
-			'December' => 'December'
-		];
+
 		$users = User::lists('email','id');
+		$month = [
+			'1' => 'January',
+			'2' => 'February',
+			'3' => 'March',
+			'4' => 'April',
+			'5' => 'May',
+			'6' => 'June',
+			'7' => 'July',
+			'8' => 'August',
+			'9' => 'September',
+			'10' => 'October',
+			'11' => 'November',
+			'12' => 'December'	
+
+		];
+
 		return View::make('history.create')
 					->with('userID',$users)
 					->with('title','Employee Payment')

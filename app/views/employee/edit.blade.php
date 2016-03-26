@@ -113,7 +113,7 @@
                                 {{ Form::label('img_link', "Change Profile Picture", array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
                                     <div id="preimg">
-                                    {{ HTML::image($employee->img_link, 'profile picture', [ 'class'=> 'img-responsive', 'width' => '230' , 'height' => '236']) }}<br>
+                                    {{ HTML::image($employee->photo, 'profile picture', [ 'class'=> 'img-responsive', 'width' => '230' , 'height' => '236']) }}<br>
                                     </div>
                                     {{ Form::file('img_link', array( 'class' => 'file-loading' , 'multiple'=>false, 'id' => 'input-4' )) }}
                                 </div>

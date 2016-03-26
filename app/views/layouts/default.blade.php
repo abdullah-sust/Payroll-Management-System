@@ -5,7 +5,10 @@
 <body >
 <section id="container" class="">
     @include('includes.topMenu')
-    @include('includes.sideBar')
+    @if(Auth::user()->hasRole('admin'))
+    	@include('includes.sideBar')
+    @else
+    @endif
     <section id="main-content">
         <section class="wrapper site-min-height">
             @yield('content')

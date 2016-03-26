@@ -198,4 +198,15 @@ class EmployeeController extends \BaseController {
 		
 	}
 
+	public function search() {
+		$id = Input::get('id');
+		$status = User::where('employeeID', $id)->first(); // $d is employee id here
+		$id = User::where('employeeID', $id)->pluck('id'); // this is user id 
+		$salary = Helper::calculation($id);
+		return View::make('calculation.show')
+						->with('status', $status)
+						->with('title', 'Info of')
+						->with('salary', $salary);
+	}
+
 }

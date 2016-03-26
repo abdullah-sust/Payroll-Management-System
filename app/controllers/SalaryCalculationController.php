@@ -23,8 +23,10 @@ class SalaryCalculationController extends \BaseController {
 	public function showStatusFull($id)
 	{
 
+		//return 'fkjf';
 		//$id = Input::get('user_id');
-		$status = User::find($id);
+		$status = User::where('employeeID', $id)->first(); // $idd is employee id here
+		$id = User::where('employeeID', $id)->pluck('id'); // this is user id 
 		$salary = Helper::calculation($id);
 		return View::make('calculation.show')
 						->with('status', $status)

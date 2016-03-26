@@ -4,11 +4,11 @@
           <section class="wrapper">
 
                 <!-- search area ---->
-               <form class="form-horizontal search-result">
+               <form class="form-horizontal search-result" action="{{ route('search.employee.show') }}" method="get">
                           <div class="form-group">
                               <label class="col-lg-1 col-sm-1 control-label">Search</label>
                               <div class="col-lg-8 col-sm-8">
-                                  <input type="text" class="form-control input-xxlarge">
+                                  <input type="text" name="id" class="form-control input-xxlarge">
                                   <p class="help-block">About 5,880,000 results (0.23 seconds) </p>
                               </div>
                               <div class="col-lg-2">
