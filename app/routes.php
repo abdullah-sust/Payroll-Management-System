@@ -30,12 +30,13 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('change-password', array('as' => 'password.change', 'uses' => 'AuthController@changePassword'));
 	Route::post('change-password', array('as' => 'password.doChange', 'uses' => 'AuthController@doChangePassword'));
 
-	Route::get('profile', ['as'=>'user.profile', 'uses'=>'UserController@show']);
 	Route::get('profile/account', ['as'=>'user.account', 'uses'=>'UserController@account']);
 	Route::get('edit-profile',['as'=>'user.edit', 'uses'=>'UserController@edit']);
 	Route::post('update-profile',['as'=>'user.update', 'uses'=>'UserController@update']);
 	Route::get('upload-avatar',['as'=>'upload.avatar', 'uses'=>'UserController@uploadAvatarForm']);
 	Route::post('upload-avatar',['as'=>'upload.avatar', 'uses'=>'UserController@uploadAvatar']);
+
+	Route::get('profile', ['as' => 'user.profile', 'uses' => 'AuthController@show']);
 
 });
 
@@ -105,8 +106,9 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('salarycalculation/show',['as' => 'calculation.show', 'uses' => 'SalaryCalculationController@show']);
 
 	Route::get('history',['as' => 'history.index', 'uses' => 'HistoryController@index']);
-	Route::get('history',['as' => 'history.create', 'uses' => 'HistoryController@create']);
+	Route::get('history/add',['as' => 'history.create', 'uses' => 'HistoryController@create']);
 
 	Route::get('employee/show/{id}', ['as' => 'status.full.show', 'uses' => 'SalaryCalculationController@showStatusFull']);
+	Route::get('employee/search/show/{id}',['as' => 'search.employee.show', 'uses' => 'EmployeeController@search']);
 
 });

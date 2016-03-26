@@ -9,31 +9,31 @@
                   <aside class="profile-info col-lg-9">
                       <section class="panel">
                           <div class="panel-body bio-graph-info">
-                              <h1>Employee Info ID: <span style="color:red">{{ $status->employeeID }}</span></h1>
+                              <h1>Employee Info ID: <span style="color:red">{{ $user->employeeID }}</span></h1>
                               <div class="row">
                                   <div class="bio-row">
-                                      <p><span>First Name </span>: {{ $status->profile->first_name }}</p>
+                                      <p><span>First Name </span>: {{ $user->profile->first_name }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Last Name </span>: {{ $status->profile->last_name }}</p>
+                                      <p><span>Last Name </span>: {{ $user->profile->last_name }}</p>
                                   </div>
                                   <div class="bio-row">
                                       <p><span>Country </span>: Australia</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Birthday</span>: {{ $status->profile->birth_date }}</p>
+                                      <p><span>Birthday</span>: {{ $user->profile->birth_date }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Occupation </span>: {{ $status->email }}</p>
+                                      <p><span>Occupation </span>: {{ $user->email }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Email </span>: {{ $status->email }}</p>
+                                      <p><span>Email </span>: {{ $user->email }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Mobile </span>: {{ $status->profile->phone }}</p>
+                                      <p><span>NID </span>: {{ $user->profile->nid }}</p>
                                   </div>
                                   <div class="bio-row">
-                                      <p><span>Phone </span>: {{ $status->profile->phone }}</p>
+                                      <p><span>Phone </span>: {{ $user->profile->phone }}</p>
                                   </div>
                               </div>
                           </div>
@@ -47,8 +47,8 @@
                                               <h3>Position</h3>
                                           </div>
                                           <div class="bio-desk">
-                                            @if(!empty($status->companyprofile->join_date))
-                                              <h3 style="color:green">{{ $status->companyprofile->designation->name }}</h3>
+                                            @if(!empty($user->companyprofile->join_date))
+                                              <h3 style="color:green">{{ $user->companyprofile->designation->name }}</h3>
                                             @else
                                               ____
                                             @endif
@@ -63,8 +63,8 @@
                                               <h3>Rank</h3>
                                           </div>
                                           <div class="bio-desk">
-                                            @if(!empty($status->companyprofile->join_date))
-                                              <h3 style="color:purple">{{ $status->companyprofile->rank->rank }}</h3>
+                                            @if(!empty($user->companyprofile->join_date))
+                                              <h3 style="color:purple">{{ $user->companyprofile->rank->rank }}</h3>
                                             @else
                                               ____
                                             @endif
@@ -81,7 +81,7 @@
                                           <div class="bio-desk">
                                               
 
-                                            @if(!empty($status->companyprofile->join_date))
+                                            @if(!empty($user->companyprofile->join_date))
                                               <h3 style="color:green">{{ $salary }}</h3>
                                             @else
                                               ____
@@ -97,8 +97,8 @@
                                               <h3>Join Date</h3>
                                           </div>
                                           <div class="bio-desk">
-                                            @if(!empty($status->companyprofile->join_date))
-                                              <h3 style="color:green">{{ $status->companyprofile->join_date }}</h3>
+                                            @if(!empty($user->companyprofile->join_date))
+                                              <h3 style="color:green">{{ $user->companyprofile->join_date }}</h3>
                                             @else
                                               ____
                                             @endif
@@ -113,17 +113,12 @@
                       <section class="panel">
                           <div class="user-heading round">
                               <a href="#">
-                                  {{ HTML::image($status->profile->photo, 'photo', ['class'=> 'img-responsive', 'width' => '230' , 'height' => '236']) }}
+                                  {{ HTML::image($user->profile->photo, 'photo', ['class'=> 'img-responsive', 'width' => '230' , 'height' => '236']) }}
                               </a>
-                              <h1>{{ $status->profile->first_name }} {{ $status->profile->last_name }}</h1>
-                              <p>{{ $status->email }}</p>
+                              <h1>{{ $user->profile->first_name }} {{ $user->profile->last_name }}</h1>
+                              <p>{{ $user->email }}</p>
                           </div>
 
-                          <ul class="nav nav-pills nav-stacked">
-                              <li class="active"><a href="{{ URL::route('status.full.show', array('id' => $status->employeeID)) }}"> <i class="fa fa-user"></i> Profile</a></li>
-                              
-                              <li><a href="{{ URL::route('employee.edit', array('id' => $status->id)) }}"> <i class="fa fa-edit"></i> Edit profile</a></li>
-                          </ul>
 
                       </section>
                   </aside>
