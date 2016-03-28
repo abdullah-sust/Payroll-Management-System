@@ -6,13 +6,12 @@
                 <!-- search area ---->
                <form class="form-horizontal search-result" action="{{ route('search.employee.show') }}" method="get">
                           <div class="form-group">
-                              <label class="col-lg-1 col-sm-1 control-label">Search</label>
+                              <label class="col-lg-1 col-sm-1 control-label"></label>
                               <div class="col-lg-8 col-sm-8">
-                                  <input type="text" name="id" class="form-control input-xxlarge">
-                                  <p class="help-block">About 5,880,000 results (0.23 seconds) </p>
+                                  <input type="text" name="id" class="form-control input-xxlarge" placeholder="Type Employee ID here e.g. 100101">
                               </div>
                               <div class="col-lg-2">
-                                  <button class="btn " type="submit">SEARCH</button>
+                                  <button class="btn btn-primary" type="submit">SEARCH</button>
                               </div>
                           </div>
                       </form>
@@ -20,7 +19,8 @@
 
               <!--state overview start-->
               <div class="row state-overview">
-                  <div class="col-lg-3 col-sm-6">
+              
+                  <div class="col-lg-3 col-sm-6 col-md-offset-4">
                       <section class="panel">
                           <div class="symbol terques">
                               <i class="fa fa-user"></i>
@@ -33,6 +33,8 @@
                           </div>
                       </section>
                   </div>
+                
+                <!-- 
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol red">
@@ -72,6 +74,7 @@
                           </div>
                       </section>
                   </div>
+                  ############################# -->
               </div>
               <!--state overview end-->
 

@@ -24,7 +24,7 @@ class RewardController extends \BaseController {
 	 */
 	public function create()
 	{
-		$users = User::lists('email', 'id');
+		$users = User::lists('employeeID', 'id');
 		return View::make('reward.create')
 						->with('title', 'Attach a Reward/Fine')
 						->with('userId', $users);
@@ -53,7 +53,7 @@ class RewardController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
 		if(Reward::where('user_id', $data['user_id'])->exists()) {
-			return Redirect::back()->withErrors('This Employee is already attached Reward or Fine.If you want to change, hit edit button');
+			return Redirect::back()->withInput()->withErrors('This Employee is already attached Reward or Fine.If you want to change, hit edit button');
 		}
 
 		$reward = new Reward();
@@ -110,7 +110,8 @@ class RewardController extends \BaseController {
 	{
 		//
 		$rules = [
-					'name'      => 'required',		
+					'fine'         => 'required|numeric',
+					'extra_pay'    => 'required|numeric'
 				];
 
 		$data = Input::all();
@@ -122,10 +123,11 @@ class RewardController extends \BaseController {
 		}
 
 		$reward = Reward::find($id);
-		$reward->name = $data['name'];
-
+		$reward->user_id = $data['user_id'];
+		$reward->fine = $data['fine'];
+		$reward->extra_pay = $data['extra_pay'];
 		if($reward->save()){
-			return Redirect::route('reward.index')->with('success',"Reward Updated Successfully");
+			return Redirect::route('reward.index')->with('success',"Reward/Fine Updated Successfully");
 		} else {
 			return Redirect::route('reward.index')->with('error',"Something went wrong.Try again");
 		}

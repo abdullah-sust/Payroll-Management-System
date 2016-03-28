@@ -39,7 +39,7 @@
                 <!-- input for tiltle -->
 
                             <div class="form-group">
-                                {{ Form::label('join_date', 'Join Date', array('class' => 'col-md-2 control-label')) }}
+                                {{ Form::label('join_date', 'Join Date*', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
                                     {{ Form::text('join_date', null, array('class' => 'form-control', 'required')) }}
                                 </div>
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 {{ Form::label('contribution', 'Contribution', array('class' => 'col-md-2 control-label')) }}
                                 <div class="col-md-4">
-                                    {{ Form::text('contribution', null, array('class' => 'form-control', 'required')) }}
+                                    {{ Form::textarea('contribution', null, array('class' => 'form-control', 'required')) }}
                                 </div>
                             </div>
 
@@ -71,4 +71,32 @@
             </section>
         </div>
     </div>
+@stop
+
+@section('style')
+    {{ HTML::style('assets/bootstrap-datepicker/css/datepicker.css') }}
+
+@stop
+
+
+
+@section('script')
+
+
+    {{ HTML::script('assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}
+
+
+   
+    <!-- image drag&drop and upload plugin  -->
+
+    <script>
+    $(document).on('ready', function() {
+
+        /*$("#date").datepicker({
+                format: 'yyyy-mm-dd'
+            });*/
+            $( "#join_date" ).datepicker( "setDate", new Date() ); 
+    });
+    </script>    
+    
 @stop

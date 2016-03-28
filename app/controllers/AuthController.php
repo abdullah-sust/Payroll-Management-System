@@ -29,20 +29,30 @@ class AuthController extends \BaseController {
 		} else
 		{
 
-			$credentials = array
+			$credentials1 = array
 			(
 						'email'    => Input::get('email'),
 						'password' => Input::get('password')
 			);
 
-			if (Auth::attempt($credentials))
-			{
-				return Redirect::intended('dashboard');
+			$credentials2 = array
+			(
+						'employeeID' => Input::get('email'),
+						'password' => Input::get('password')
+			);
+
+			if ((Auth::attempt($credentials1)) || (Auth::attempt($credentials2)))
+			{	
+				if(Auth::user()->hasRole('admin')) {
+					return Redirect::intended('dashboard');
+				} else {
+					return Redirect::route('user.profile');
+				}
 			} else
 			{
 				return Redirect::route('login')
 							->withInput()
-							->withErrors('Error in Email Address or Password.');
+							->withErrors('Error in Email Address/ID or Password.');
 			}
 		}
 	}

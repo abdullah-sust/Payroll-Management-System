@@ -68,7 +68,7 @@
 
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                            {{ Form::submit('Address Submit', array('class' => 'btn btn-primary')) }}
+                            {{ Form::submit('Attach Address', array('class' => 'btn btn-primary')) }}
                         </div>
                     </div>
                     {{ Form::close() }}

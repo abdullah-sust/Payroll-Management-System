@@ -41,8 +41,7 @@
                                     <td>{{ $employee->marital_status }}</td>
                                     <td>{{ $employee->phone }}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-xs btn-success btn-show" href="{{ URL::route('employee.show', array('id' => $employee->id)) }}">Show</a>
-                                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('employee.edit', array('id' => $employee->id)) }}">Edit</a>
+                                        <a class="btn btn-xs btn-success btn-show" href="{{ URL::route('employee.edit', array('id' => $employee->id)) }}">Edit</a>
                                         <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $employee->id }}">Delete</a>
                                     </td>
                                 </tr>

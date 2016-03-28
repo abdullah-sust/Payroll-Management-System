@@ -7,7 +7,7 @@
                 <header class="panel-heading clearfix">
                     {{ $title }}
                     <span class="pull-right">
-                            <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('history.create') }}">Pay Salary</a>
+                            <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('history.create') }}">Add a Record</a>
                     </span>
                 </header>
                 <div class="panel-body">
@@ -20,6 +20,7 @@
                                 <th>Month</th>
                                 <th>How Much</th>                   
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
 
                             </thead>
@@ -31,6 +32,9 @@
                                     <td>{{ $month[$history->month] }}</td>
                                     <td>{{ $history->salary }}</td>
                                     <td>{{ $status[$history->status] }}</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('history.edit', array('id' => $history->id)) }}">Modify</a> 
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

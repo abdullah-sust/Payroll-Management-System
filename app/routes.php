@@ -30,18 +30,13 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('change-password', array('as' => 'password.change', 'uses' => 'AuthController@changePassword'));
 	Route::post('change-password', array('as' => 'password.doChange', 'uses' => 'AuthController@doChangePassword'));
 
-	Route::get('profile/account', ['as'=>'user.account', 'uses'=>'UserController@account']);
-	Route::get('edit-profile',['as'=>'user.edit', 'uses'=>'UserController@edit']);
-	Route::post('update-profile',['as'=>'user.update', 'uses'=>'UserController@update']);
-	Route::get('upload-avatar',['as'=>'upload.avatar', 'uses'=>'UserController@uploadAvatarForm']);
-	Route::post('upload-avatar',['as'=>'upload.avatar', 'uses'=>'UserController@uploadAvatar']);
-
 	Route::get('profile', ['as' => 'user.profile', 'uses' => 'AuthController@show']);
 
 });
 
 Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 {
+	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'AuthController@dashboard'));
 	// Employee
 
 	Route::get('employee',['as' => 'employee.index', 'uses' => 'EmployeeController@index']);
@@ -91,15 +86,6 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('reward/{id}/show',['as' => 'reward.show', 'uses' => 'RewardController@show']);
 	Route::put('reward/{id}',['as' => 'reward.update', 'uses' => 'RewardController@update']);
 	Route::delete('reward/{id}',['as' => 'reward.delete', 'uses' => 'RewardController@destroy']);
-
-
-	Route::get('salarycalculation',['as' => 'calculation.index', 'uses' => 'SalaryCalculationController@index']);
-	Route::get('salarycalculation/create',['as' => 'calculation.create', 'uses' => 'SalaryCalculationController@create']);
-	Route::post('salarycalculation',['as' => 'calculation.store', 'uses' => 'SalaryCalculationController@store']);
-	Route::get('salarycalculation/{id}/edit',['as' => 'calculation.edit', 'uses' => 'SalaryCalculationController@edit']);
-	Route::put('salarycalculation/{id}',['as' => 'calculation.update', 'uses' => 'SalaryCalculationController@update']);
-	Route::delete('salarycalculation/{id}',['as' => 'calculation.delete', 'uses' => 'SalaryCalculationController@destroy']);
-	Route::get('salarycalculation/{id}',['as' => 'calculation.search', 'uses' => 'SalaryCalculationController@search']);
 
 
 	Route::post('status/show', ['as' => 'status.show', 'uses' => 'SalaryCalculationController@showStatus']);
