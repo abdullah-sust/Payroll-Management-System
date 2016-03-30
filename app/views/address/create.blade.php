@@ -8,7 +8,7 @@
                     {{ $title }}
                     <span class="pull-right">
 
-                            <a class="btn btn-success btn-sm" href="{{ URL::route('employee.index') }}">Employee Address List</a>
+                            <a class="btn btn-success btn-sm" href="{{ URL::route('address.index') }}">Employee Address List</a>
 
 					</span>
                 </header>
