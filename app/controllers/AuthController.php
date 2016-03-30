@@ -44,7 +44,7 @@ class AuthController extends \BaseController {
 			if ((Auth::attempt($credentials1)) || (Auth::attempt($credentials2)))
 			{	
 				if(Auth::user()->hasRole('admin')) {
-					return Redirect::intended('dashboard');
+					return Redirect::route('dashboard');
 				} else {
 					return Redirect::route('user.profile');
 				}
