@@ -14,9 +14,10 @@
 Route::get('/',function(){
 	if(!Auth::user()->hasRole('admin')) {
 		return Redirect::route('user.profile');
-	} else {
+	} else if(Auth::user()->hasRole('admin')) {
 		return Redirect::route('dashboard');
 	}
+	return Redirect::route('login');
 });
 
 Route::group(['before' => 'guest'], function(){
@@ -28,7 +29,7 @@ Route::group(['before' => 'guest'], function(){
 
 Route::group(array('before' => 'auth'), function()
 {	
-
+	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'AuthController@dashboard'));
 	Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 	Route::get('change-password', array('as' => 'password.change', 'uses' => 'AuthController@changePassword'));
 	Route::post('change-password', array('as' => 'password.doChange', 'uses' => 'AuthController@doChangePassword'));
@@ -58,7 +59,7 @@ Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 	Route::get('designation/{id}/edit',['as' => 'designation.edit', 'uses' => 'DesignationController@edit']);
 	Route::get('designation/{id}/show',['as' => 'designation.show', 'uses' => 'DesignationController@show']);
 	Route::put('designation/{id}',['as' => 'designation.update', 'uses' => 'DesignationController@update']);
-	Route::delete('designation/{id}',['as' => 'designation.delete', 'uses' => 'DesignationController@destroy']);
+	Route::delete('designation/delete/{id}',['as' => 'designation.delete', 'uses' => 'DesignationController@destroy']);
 
 	// Salary & Rank CRUD
 
