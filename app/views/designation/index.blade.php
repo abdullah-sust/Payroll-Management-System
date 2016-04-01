@@ -4,9 +4,9 @@
         <div class="col-lg-12">
             @include('includes.alert')
             <div class="carousel-inner">
-                        
+                      
             </div>
-            
+
             <section class="panel">
                 <header class="panel-heading clearfix">
                     {{ $title }}
@@ -55,6 +55,9 @@
                     <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
                 </div>
                 <div class="modal-body">
+                    <span id="error">
+                        
+                    </span>
                     Are you sure to delete?
                     {{ Form::open(array('route' => array('designation.delete'), 'method'=> 'post', 'class' => 'deleteForm')) }}
                     <div class="form-group">
@@ -63,8 +66,8 @@
                             {{ Form::password('password', array('class' => 'form-control', 'placeholder' => '','id' => 'password', 'required')) }}
                         </div>
                     </div>
-                    <div>
-                        Plz 
+                     <div class="carousel-inner">
+                        
                     </div>
                    <br>
                    <br>
@@ -73,7 +76,7 @@
                 <div class="modal-footer">
                     
                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-success" id="deleteButtonYes">Yes</button>
+                    <button  type="submit" class="btn btn-success" id="deleteButtonYes">Yes</button>
                     {{ Form::close() }}
                 </div>
             </div>
@@ -131,41 +134,39 @@
                                             id : deleteId
                                 }
 
-                    
-
                
             }); 
             $("#deleteButtonYes").click(function(e){
+                    alert('asd');
                     e.preventDefault();
-                       $('form.deleteForm').serialize());
+                    $('form.deleteForm').serialize();
                        $.ajax({
-                       type: "delete",
-                         url: url,
-                         data: $('form.deleteForm').serialize(),
-                         success: function(response){
+                            type: "delete",
+                            url: url,
+                            data: $('form.deleteForm').serialize(),
+                            success: function(response){
 
-                        if(response.status_code == '201'){
-                             var message = 'Successfull';
-                                
-                                generatePopUpMessage(response.data, 'success');
-                                $(".carousel-inner").html('');
-                               
-
-                        },
-                        error: function($response){
-                            var message = 'Something Went Wrong';
-                            var message = "";
-                            var response = $response.responseJSON;
-                            var obj = response.message;
-                            for (var key in obj) {
-                                message += obj[key]+"<br>";
+                                if(response.status_code == '201'){
+                                 var message = 'Successfull';
+                                    
+                                    generatePopUpMessage(response.data, 'success');
+                                    $(".carousel-inner").html('');
+                                   
+                                }
+                                console.log(response);
+                            },
+                            error: function($response){
+                                var message = 'Something Went Wrong';
+                                //var message = "";
+                                var response = $response.responseJSON;
+                                console.log(response);
+                                var obj = response.error;
+                                // for (var key in obj) {
+                                //     message += obj[key]+"<br>";
+                                // }
+                                generatePopUpMessage(obj, 'danger');
                             }
-                            generatePopUpMessage(message, 'danger');
-                            // $('.question-form').prepend(message);
-                            // console.log(response);
-
-                        }
-                    });
+                        });
             });// end of delete 
         });
     </script>

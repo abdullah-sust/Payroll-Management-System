@@ -133,11 +133,17 @@ class DesignationController extends \BaseController {
 	public function destroy($id)
 	{
 		
-		
+		$allInput = Input::all();
 		$data = Input::get('password');
+		$rules['password'] = 'required';
+		$validator = Validator::make($allInput,$rules);
 
+		if($validator->fails()){
+			return $this->errorResponse("Password Required", 400);
+		}
 
-		if(Auth::user()->password == Hash::make($data)) {
+		if(Hash::check($data,Auth::user()->password)) {
+			// return 'succes';
 			Designation::destroy($id);
 			return $this->response('Deleted Successfully', 201);
 		} else {
