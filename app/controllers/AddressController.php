@@ -27,7 +27,7 @@ class AddressController extends \BaseController {
 		$users = User::lists('employeeID','id');
 		return View::make('address.create')
 						->with('users',$users)
-						->with('title','Employee\'s Address');
+						->with('title','Attach Employee\'s Address');
 	}
 
 	/**
@@ -57,7 +57,7 @@ class AddressController extends \BaseController {
 		}
 
 		if(Address::where('user_id', $data['user_id'])->exists()) {
-			return Redirect::back()->withErrors('Address Already Exists for this user');
+			return Redirect::back()->withErrors('Address Already Exists for this user.You can modify');
 		}
 		
 		$address = new Address();
@@ -70,7 +70,7 @@ class AddressController extends \BaseController {
 
 		if($address->save())
 		{
-			return Redirect::route('address.index')->with('success',"Employee's History Added Successfully");
+			return Redirect::route('address.index')->with('success',"Employee's Address Attached Successfully");
 		}
 		else
 		{
@@ -147,7 +147,7 @@ class AddressController extends \BaseController {
 
 		if($address->save())
 		{
-			return Redirect::route('address.index')->with('success',"Employee's Address Edited Successfully");
+			return Redirect::route('address.index')->with('success',"Employee's Address Updated Successfully");
 		}
 		else
 		{
