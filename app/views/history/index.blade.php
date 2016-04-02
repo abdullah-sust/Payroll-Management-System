@@ -25,7 +25,7 @@
 
                             </thead>
                             <tbody>
-                            @foreach($histories as $history)
+                             @foreach($histories as $history)
                                 <tr>
                                     <td>{{ $history->user->employeeID }}</td>
                                     <td>{{ $history->year }} </td>

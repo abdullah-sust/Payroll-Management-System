@@ -19,8 +19,9 @@ class CreateSalaryRankTable extends Migration {
 			$table->foreign('user_id')->references('id')
 									->on('users')
 									->onDelete('cascade')
-									->onUpdate('cascade');
-
+									->onUpdate('cascade')
+									->nullable();
+									
 			$table->integer('rank')->unsigned();
 			$table->float('basic', 10, 2)->default(0.00);
 			$table->integer('bonus')->default(0);

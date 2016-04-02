@@ -49,7 +49,6 @@ class HistoryController extends \BaseController {
 	{
 
 		$status = [
-
 			'0' => 'Not Paid',
 			'1' => 'Paid',
 			];
@@ -69,8 +68,12 @@ class HistoryController extends \BaseController {
 			'12' => 'December'	
 		];
 
+
+		$ranks = SalaryRank::lists('rank','id');
+
 		return View::make('history.create')
 					->with('userID',$users)
+					->with('ranks',$ranks)
 					->with('title','Add Employee Payment Record')
 					->with('status', $status)
 					->with('month',$month);
@@ -85,8 +88,7 @@ class HistoryController extends \BaseController {
 	public function store()
 	{
 		$rules = [
-
-			'user_id' => 'required',
+			'rank_id'  => 'required',
 			'year'    => 'required',
 			'month'   => 'required',
 			'status'  => 'required'
@@ -99,20 +101,28 @@ class HistoryController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
-		$history = new History();
-		$history->user_id = $data['user_id'];
-		$history->year = $data['year'];
-		$history->month = $data['month'];
-		$history->status =$data['status'];
-		$history->salary = Helper::calculation($data['user_id']);
+		$r = (int)$data['rank_id'];
+		$users =  CompanyProfile::where('rank_id','=',$r)->get();
 
-		if($history->save()){
-
-			return Redirect::route('history.index')->with('success',"Record Added Successfully");
-		} else {
-			return Redirect::route('history.create')->with('error',"Something went wrong.Try again");
-
+		foreach ($users as $user)
+		{
+			$history = new History();
+			$history->user_id = $user->user_id;
+			$history->year = $data['year'];
+			$history->month = $data['month'];
+			$history->status =$data['status'];
+			$history->salary = Helper::calculation($user->user_id);
+			$history->save();
 		}
+		return Redirect::route('history.index')->with('success',"Record Added Successfully");
+			// {
+			// 	return Redirect::route('history.index')->with('success',"Record Added Successfully");
+			// }
+			// else
+			// {
+			// 	return Redirect::route('history.create')->with('error',"Something went wrong.Try again");
+			// }
+		
 	}
 
 	/**
@@ -155,7 +165,9 @@ class HistoryController extends \BaseController {
 			'11' => 'November',
 			'12' => 'December'	
 		];
+
 		$history = History::find($id);
+		
 		return View::make('history.edit')
 					->with('title','Modify Record')
 					->with('status', $status)

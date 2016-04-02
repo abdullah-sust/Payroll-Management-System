@@ -40,10 +40,6 @@
                             {{ Form::select('status', $status, '',array('class' => 'form-control')) }}
                         </div>
                     </div>
-
-
-               
-
                 <!-- submit button  -->
 
                             <div class="form-group">
