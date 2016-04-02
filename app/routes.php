@@ -12,12 +12,13 @@
 */
 
 Route::get('/',function(){
-	if(!Auth::user()->hasRole('admin')) {
-		return Redirect::route('user.profile');
-	} else if(Auth::user()->hasRole('admin')) {
-		return Redirect::route('dashboard');
-	}
-	return Redirect::route('login');
+	// if(!Auth::user()->hasRole('admin')) {
+	// 	return Redirect::route('user.profile');
+	// 		}
+	// } else if(Auth::user()->hasRole('admin')) {
+	// 	return Redirect::route('dashboard');
+	// }
+	return Redirect::route('user.profile');
 });
 
 Route::group(['before' => 'guest'], function(){
@@ -29,7 +30,7 @@ Route::group(['before' => 'guest'], function(){
 
 Route::group(array('before' => 'auth'), function()
 {	
-	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'AuthController@dashboard'));
+	
 	Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 	Route::get('change-password', array('as' => 'password.change', 'uses' => 'AuthController@changePassword'));
 	Route::post('change-password', array('as' => 'password.doChange', 'uses' => 'AuthController@doChangePassword'));
@@ -41,6 +42,7 @@ Route::group(array('before' => 'auth'), function()
 Route::group(array('before' => 'auth|admin', 'prefix' => 'admin'), function()
 {
 	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'AuthController@dashboard'));
+
 	// Employee
 
 	Route::get('employee',['as' => 'employee.index', 'uses' => 'EmployeeController@index']);

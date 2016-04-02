@@ -3,9 +3,11 @@
     <div class="row">
         <div class="col-lg-12">
             @include('includes.alert')
-            <div class="carousel-inner">
-                      
-            </div>
+            
+                      <span id="error">
+                        
+                    </span>
+            
 
             <section class="panel">
                 <header class="panel-heading clearfix">
@@ -58,7 +60,7 @@
                     <span id="error">
                         
                     </span>
-                    Are you sure to delete?
+                    <h3>Provide Your Password</h3>
                     {{ Form::open(array('route' => array('designation.delete'), 'method'=> 'post', 'class' => 'deleteForm')) }}
                     <div class="form-group">
                        
@@ -67,10 +69,11 @@
                         </div>
                     </div>
                      <div class="carousel-inner">
+                        <span id="error">
                         
+                    </span>
                     </div>
-                   <br>
-                   <br>
+                   
                     
                 </div>
                 <div class="modal-footer">
@@ -100,14 +103,16 @@
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
             
-            function generatePopUpMessage(message, type){
-                var message = '<div class="alert alert-'+type+' alert-dismissable fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+message+'<br/></div>';
-                $('#error').html('');
-                $('#error').html(message);
-            }
-
             $('#example').dataTable({
             });
+
+            function generatePopUpMessage(message, type){
+                var message = '<div class="alert alert-'+type+' alert-dismissable fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+message+'<br/></div>';
+                $('#error').html(message);
+                
+            }
+
+            
             var password;
             var deleteId;
             var url;
@@ -137,7 +142,7 @@
                
             }); 
             $("#deleteButtonYes").click(function(e){
-                    alert('asd');
+                    
                     e.preventDefault();
                     $('form.deleteForm').serialize();
                        $.ajax({
@@ -149,11 +154,20 @@
                                 if(response.status_code == '201'){
                                  var message = 'Successfull';
                                     
+                                    
                                     generatePopUpMessage(response.data, 'success');
-                                    $(".carousel-inner").html('');
+                                    //$(".carousel-inner").html(response.data);
+                                    // $(this).modal('hide');
+                                    //console.log(response);
+                                    $(this).modal('hide', function (e) {
+                                        e.preventDefault();
+                                        location.reload(true);
+                                    });
                                    
                                 }
+                                
                                 console.log(response);
+
                             },
                             error: function($response){
                                 var message = 'Something Went Wrong';
@@ -165,6 +179,7 @@
                                 //     message += obj[key]+"<br>";
                                 // }
                                 generatePopUpMessage(obj, 'danger');
+                                $("#error").html(response);
                             }
                         });
             });// end of delete 

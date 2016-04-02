@@ -26,7 +26,7 @@ class SalaryController extends \BaseController {
 	{
 		$users = User::lists('employeeID', 'id');
 		return View::make('salary.create')
-						->with('title', 'Create New Salary')
+						->with('title', 'Create New Salary/Rank')
 						->with('userId', $users);
 	}
 
@@ -54,11 +54,11 @@ class SalaryController extends \BaseController {
 		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
-		/*
-		if(SalaryRank::where('user_id', $data['user_id'])->exists()) {
-			return Redirect::back()->withInput()->withErrors('This Employee is already assigned Basic & Bonus');
+		
+		if(SalaryRank::where('rank', $data['rank'])->exists()) {
+			return Redirect::back()->withInput()->withErrors('This Rank is already exists');
 		}
-		*/
+		
 
 		$salary = new SalaryRank();
 		//$salary->user_id= $data['user_id'];

@@ -145,7 +145,7 @@ class DesignationController extends \BaseController {
 		if(Hash::check($data,Auth::user()->password)) {
 			// return 'succes';
 			Designation::destroy($id);
-			return $this->response('Deleted Successfully', 201);
+			return $this->response('Designation Deleted Successfully', 201);
 		} else {
 			return $this->errorResponse('Password did not match', 400);
 		}

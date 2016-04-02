@@ -17,7 +17,7 @@
                             <tr>
                             <!--<th class="text-center">Employee ID</th>  -->
                                 <th>Rank</th>
-                                <th>Basic</th>
+                                <th>Basic Salary</th>
                                 <th>Bonus</th>                   
                                 <th class="text-center">Actions</th>
                             </tr>
@@ -26,9 +26,9 @@
                             @foreach($salary as $salary)
                                 <tr>
                                 <!--<td class="text-center">{{ $salary->user->employeeID }}</td> -->
-                                    <td>{{ $salary->rank}} {{ $salary->last_name }}</td>
+                                    <td>{{ $salary->rank }} </td>
                                     <td>{{ $salary->basic }}</td>
-                                    <td>{{ $salary->bonus }} {{ $salary->last_name }}</td>
+                                    <td>{{ $salary->bonus }}</td>
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('salary.edit', array('id' => $salary->id)) }}">Edit</a>
                                         <!--a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $salary->id }}">Delete</a-->
