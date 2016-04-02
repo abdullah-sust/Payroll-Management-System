@@ -102,7 +102,7 @@ class HistoryController extends \BaseController {
 		}
 
 		$r = (int)$data['rank_id'];
-		$users =  SalaryRank::where('rank','=',$r)->get();
+		$users =  CompanyProfile::where('rank_id','=',$r)->get();
 
 		foreach ($users as $user)
 		{
@@ -112,7 +112,6 @@ class HistoryController extends \BaseController {
 			$history->month = $data['month'];
 			$history->status =$data['status'];
 			$history->salary = Helper::calculation($user->user_id);
-
 			$history->save();
 		}
 		return Redirect::route('history.index')->with('success',"Record Added Successfully");

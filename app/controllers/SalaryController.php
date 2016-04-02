@@ -40,7 +40,7 @@ class SalaryController extends \BaseController {
 	{
 		$rules = [
 
-					'user_id'      => 'required',
+					//'user_id'      => 'required',
 					'rank'         => 'required|numeric',
 					'basic_salary' => 'required|numeric',
 					'bonus'        => 'required|numeric'
@@ -54,14 +54,14 @@ class SalaryController extends \BaseController {
 		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
-
+		/*
 		if(SalaryRank::where('user_id', $data['user_id'])->exists()) {
 			return Redirect::back()->withInput()->withErrors('This Employee is already assigned Basic & Bonus');
 		}
-
+		*/
 
 		$salary = new SalaryRank();
-		$salary->user_id= $data['user_id'];
+		//$salary->user_id= $data['user_id'];
 		$salary->rank = $data['rank'];
 		$salary->basic= $data['basic_salary'];
 		$salary->bonus = $data['bonus'];

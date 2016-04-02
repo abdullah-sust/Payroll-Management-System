@@ -25,13 +25,13 @@
 
                             </thead>
                             <tbody>
-                            @foreach($histories as $history)
+                             @foreach($histories as $history)
                                 <tr>
-                                    <td>{{ $history->user_id }}</td>
+                                    <td>{{ $history->user->employeeID }}</td>
                                     <td>{{ $history->year }} </td>
-                                    <td>{{ $history->month}}</td>
+                                    <td>{{ $month[$history->month] }}</td>
                                     <td>{{ $history->salary }}</td>
-                                    <td>{{ $history->status }}</td>
+                                    <td>{{ $status[$history->status] }}</td>
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('history.edit', array('id' => $history->id)) }}">Modify</a> 
                                     </td>

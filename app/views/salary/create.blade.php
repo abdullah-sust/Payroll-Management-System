@@ -15,12 +15,13 @@
 
                     <!-- input for name-->
 
-                    <div class="form-group">
-                        {{ Form::label('user_id', 'Employee ID*', array('class' => 'col-md-2 control-label')) }}
+                <!--<div class="form-group">
+                        //{{ Form::label('user_id', 'Employee ID*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::select('user_id', $userId, '',array('class' => 'form-control')) }}
+                        //    {{ Form::select('user_id', $userId, '',array('class' => 'form-control')) }}
                         </div>
                     </div>
+                -->
 
 
                     <!-- input for name-->
