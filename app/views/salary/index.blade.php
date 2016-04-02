@@ -15,7 +15,7 @@
                         <table class="display table table-bordered table-striped" id="example">
                             <thead>
                             <tr>
-                                <th class="text-center">Employee ID</th>
+                            <!--<th class="text-center">Employee ID</th>  -->
                                 <th>Rank</th>
                                 <th>Basic</th>
                                 <th>Bonus</th>                   
@@ -25,7 +25,7 @@
                             <tbody>
                             @foreach($salary as $salary)
                                 <tr>
-                                    <td class="text-center">{{ $salary->user->employeeID }}</td>
+                                <!--<td class="text-center">{{ $salary->user->employeeID }}</td> -->
                                     <td>{{ $salary->rank}} {{ $salary->last_name }}</td>
                                     <td>{{ $salary->basic }}</td>
                                     <td>{{ $salary->bonus }} {{ $salary->last_name }}</td>

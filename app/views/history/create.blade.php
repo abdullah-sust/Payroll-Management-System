@@ -15,9 +15,9 @@
 
         
                     <div class="form-group">
-                        {{ Form::label('user_id', 'Employee ID', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('rank_id', 'Rank ID', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::select('user_id', $userID, '',array('class' => 'form-control')) }}
+                            {{ Form::select('rank_id', $ranks, '',array('class' => 'form-control')) }}
                         </div>
                     </div>
 
