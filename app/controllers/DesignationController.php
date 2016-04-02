@@ -132,14 +132,51 @@ class DesignationController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		try{
+		
+		$allInput = Input::all();
+		$data = Input::get('password');
+		$rules['password'] = 'required';
+		$validator = Validator::make($allInput,$rules);
+
+		if($validator->fails()){
+			return $this->errorResponse("Password Required", 400);
+		}
+
+		if(Hash::check($data,Auth::user()->password)) {
+			// return 'succes';
 			Designation::destroy($id);
+			return $this->response('Deleted Successfully', 201);
+		} else {
+			return $this->errorResponse('Password did not match', 400);
+		}
+		
+
+
+
+		/*try{
+			//Designation::destroy($id);
 
 			return Redirect::route('designation.index')->with('success','Designation Deleted Successfully.');
 
 		}catch(Exception $ex){
 			return Redirect::route('designation.index')->with('error','Something went wrong.Try Again.');
-		}
+		} */
+	}
+
+	// code for json response to 
+	private function response($message, $status = 200){
+		return Response::json([
+						'data' => $message,
+						'status_code' => $status
+						
+					],$status);
+	}
+	private function errorResponse($message, $status = 400){
+		return Response::json([
+						'error' => $message,
+						'status_code' => $status
+						
+					], $status);
 	}
 
 }
