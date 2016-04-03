@@ -68,6 +68,7 @@ class SalaryController extends \BaseController {
 		
 		
 		if($salary->save()){
+			return SalaryRank::find($salary->id);
 			return Redirect::route('salary.index')->with('success',"Salary Added Successfully");
 		} else {
 			return Redirect::route('salary.index')->with('error',"Something went wrong.Try again");
@@ -100,7 +101,7 @@ class SalaryController extends \BaseController {
 			$salary = SalaryRank::findOrFail($id);
 			return View::make('salary.edit')
 						->with('salary',$salary )
-						->with('title','Edit Salary Status');
+						->with('title','Edit Salary according to Rank');
 		}catch(Exception $ex){
 			return Redirect::route('salary.index')->with('error','Something went wrong.Try Again.');
 		}

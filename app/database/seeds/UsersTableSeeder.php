@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder {
 		DB::table('users')->insert($users);
 
 		$faker = Faker::create();
-		for ($i=3; $i < 199; $i++) {
+		for ($i=3; $i < 21; $i++) {
 		
 			User::create([
 				'EmployeeID' => 100100+$i,

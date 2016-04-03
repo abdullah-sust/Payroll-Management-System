@@ -5,10 +5,9 @@
             @include('includes.alert')
             <section class="panel">
                 <header class="panel-heading">
-                    <b>{{ $title }} || Employee ID: <span style="color:green">{{ $salary->user->employeeID }}</span> || Name: <span style="color:green">{{ $salary->user->profile->first_name }} {{ $salary->user->profile->last_name }}</span></b>
+                    <b>{{ $title }}</b>
                     <span class="pull-right">
-
-                            <a class="btn btn-success btn-sm" href="{{ URL::route('salary.index') }}">All Salary</a>
+                            <a class="btn btn-success btn-sm" href="{{ URL::route('salary.index') }}">Full Salary Structure on Rank</a>
 
 					</span>
                 </header>
