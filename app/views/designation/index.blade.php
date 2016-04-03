@@ -4,9 +4,7 @@
         <div class="col-lg-12">
             @include('includes.alert')
             
-                      <span id="error">
-                        
-                    </span>
+                      
             
 
             <section class="panel">
@@ -57,9 +55,10 @@
                     <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
                 </div>
                 <div class="modal-body">
-                    <span id="error">
+                <span id="error">
                         
                     </span>
+                    
                     <h3>Provide Your Password</h3>
                     {{ Form::open(array('route' => array('designation.delete'), 'method'=> 'post', 'class' => 'deleteForm')) }}
                     <div class="form-group">
@@ -69,9 +68,7 @@
                         </div>
                     </div>
                      <div class="carousel-inner">
-                        <span id="error">
                         
-                    </span>
                     </div>
                    
                     
@@ -108,6 +105,7 @@
 
             function generatePopUpMessage(message, type){
                 var message = '<div class="alert alert-'+type+' alert-dismissable fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+message+'<br/></div>';
+                $('#error').html('');
                 $('#error').html(message);
                 
             }
@@ -125,10 +123,12 @@
 
             // jquery ajax request to delete 
             //$(document).on("click", ".deleteBtn", function()
+            var deleteAttemptr = '';
             $(document).on("click", ".deleteBtn", function() {
                    deleteId = $(this).attr('deleteId');
-                
-                
+
+                    deleteAttemptr = $(this).parent().parent();
+                    
                     
                     password = $("input#password").val();
                     
@@ -136,7 +136,7 @@
                     // alert(url);
                     //var token =  $("input[name=_token]").val();
                     dataString = { password : password,
-                                            id : deleteId
+                                    id : deleteId
                                 }
 
                
@@ -159,11 +159,8 @@
                                     //$(".carousel-inner").html(response.data);
                                     // $(this).modal('hide');
                                     //console.log(response);
-                                    $(this).modal('hide', function (e) {
-                                        e.preventDefault();
-                                        location.reload(true);
-                                    });
-                                   
+                                    $("#deleteConfirm").modal('toggle');
+                                    deleteAttemptr.hide();               
                                 }
                                 
                                 console.log(response);
@@ -179,7 +176,7 @@
                                 //     message += obj[key]+"<br>";
                                 // }
                                 generatePopUpMessage(obj, 'danger');
-                                $("#error").html(response);
+                                //$("#error").html(response);
                             }
                         });
             });// end of delete 
