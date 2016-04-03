@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'pro300',
-			'username'  => 'root',
-			'password'  => '',
+			'database'  => 'sustian_pro300',
+			'username'  => 'sustian_masiur',
+			'password'  => 'sust.cse',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

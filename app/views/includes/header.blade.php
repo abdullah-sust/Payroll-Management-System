@@ -1,9 +1,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <meta name="keyword" content="">
+        <meta name="description" content="Salary Management System">
+        <meta name="author" content="Masiur & Abdullah">
+        <meta name="keyword" content="Salary, Payroll, System, SUST , SUST CSE">
         <link rel="shortcut icon" href="img/favicon.png">
 
         <title>{{ $title }} - {{ Config::get('customConfig.names.siteName')}}</title>
