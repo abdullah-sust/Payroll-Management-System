@@ -6,6 +6,7 @@
             <section class="panel">
                 <header class="panel-heading clearfix">
                     {{ $title }}
+                    
                     <span class="pull-right">
                             <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('employee.create') }}">Add Employee</a>
                     </span>
@@ -48,10 +49,15 @@
                             @endforeach
                             </tbody>
                         </table>
+                    
+                    <span class="pull-right">
+                            <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('address.create') }}">Add Address to Employee</a>
+                    </span>
                     @else
                         No Data Found
                     @endif
                 </div>
+                
             </section>
         </div>
     </div>
@@ -66,12 +72,28 @@
                     <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
                 </div>
                 <div class="modal-body">
-                    Are you sure to delete?
+                    <span id="error">
+                        
+                    </span>
+                    
+                    <h3>Provide Your Password</h3>
+                    {{ Form::open(array('route' => array('employee.delete'), 'method'=> 'post', 'class' => 'deleteForm')) }}
+                    <div class="form-group">
+                       
+                        <div class="col-md-4">
+                            {{ Form::password('password', array('class' => 'form-control', 'placeholder' => '','id' => 'password', 'required')) }}
+                        </div>
+                    </div>
+                     <div class="carousel-inner">
+                        
+                    </div>
+                   
+                    
                 </div>
                 <div class="modal-footer">
-                    {{ Form::open(array('route' => array('employee.delete', 0), 'method'=> 'delete', 'class' => 'deleteForm')) }}
+                    
                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                    {{ Form::submit('Yes, Delete', array('class' => 'btn btn-success')) }}
+                    <button  type="submit" class="btn btn-success" id="deleteButtonYes">Yes</button>
                     {{ Form::close() }}
                 </div>
             </div>
@@ -94,17 +116,87 @@
 
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
-            $.get("http://ipinfo.io", function(response) {
-                console.log(response.city, response.country,response.region);
-            }, "jsonp");
+            
             $('#example').dataTable({
             });
 
-            $(document).on("click", ".deleteBtn", function() {
+            function generatePopUpMessage(message, type){
+                var message = '<div class="alert alert-'+type+' alert-dismissable fade in"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+message+'<br/></div>';
+                $('#error').html('');
+                $('#error').html(message);
+                
+            }
+
+            
+            var password;
+            var deleteId;
+            var url;
+            var dataString;
+           /* $(document).on("click", ".deleteBtn", function() {
                 var deleteId = $(this).attr('deleteId');
-                var url = "<?php echo URL::route('employee.index'); ?>";
-                $(".deleteForm").attr("action", url+'/'+deleteId);
-            });
+                var url = "<?php echo URL::route('employee.delete'); ?>";
+                $(".deleteForm").attr("action", url);
+            }); */
+
+            // jquery ajax request to delete 
+            //$(document).on("click", ".deleteBtn", function()
+            var deleteAttemptr = '';
+            $(document).on("click", ".deleteBtn", function() {
+                   deleteId = $(this).attr('deleteId');
+
+                    deleteAttemptr = $(this).parent().parent();
+                    
+                    
+                    password = $("input#password").val();
+                    
+                    url = "<?php echo URL::route('employee.delete', false); ?>/"+deleteId;
+                    // alert(url);
+                    //var token =  $("input[name=_token]").val();
+                    dataString = { password : password,
+                                    id : deleteId
+                                }
+
+               
+            }); 
+            $("#deleteButtonYes").click(function(e){
+                    
+                    e.preventDefault();
+                    $('form.deleteForm').serialize();
+                       $.ajax({
+                            type: "delete",
+                            url: url,
+                            data: $('form.deleteForm').serialize(),
+                            success: function(response){
+
+                                if(response.status_code == '201'){
+                                 var message = 'Successfull';
+                                    
+                                    
+                                    generatePopUpMessage(response.data, 'success');
+                                    //$(".carousel-inner").html(response.data);
+                                    // $(this).modal('hide');
+                                    //console.log(response);
+                                    $("#deleteConfirm").modal('toggle');
+                                    deleteAttemptr.hide();               
+                                }
+                                
+                                console.log(response);
+
+                            },
+                            error: function($response){
+                                var message = 'Something Went Wrong';
+                                //var message = "";
+                                var response = $response.responseJSON;
+                                console.log(response);
+                                var obj = response.error;
+                                // for (var key in obj) {
+                                //     message += obj[key]+"<br>";
+                                // }
+                                generatePopUpMessage(obj, 'danger');
+                                //$("#error").html(response);
+                            }
+                        });
+            });// end of delete 
         });
     </script>
 @stop

@@ -1,9 +1,9 @@
 ## Payroll or Salary Management System
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-
-Technology: Laravel 4.2 , MySQL, Bootstrap, JQuery
+Technology: Laravel 4.2 
+			MySQL
+			Bootstrap
+			JQuery
+Goal: Goal of the project is to build a proper salary calculation system with basic salary, bonuses, fines and extra payments 
+		Emlpoyees can view there salary status of the current month by logging in the system. Employee who posseses admin role can add employee and his/her details,
+		rank and designation and add rankwise basic salary.

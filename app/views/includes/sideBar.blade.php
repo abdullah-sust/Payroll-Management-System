@@ -30,15 +30,7 @@
                           <span>Employee List</span>
                       </a>
                   </li>
-                  {{-- Set Employee Address --}}
-                  <li>
-
-                      <a href="{{ route('address.index')}}">
-                          <i class="fa fa-user"></i>
-                          <span>Employee Address</span>
-                      </a>
-                  </li>
-
+                  
                   {{-- Salary & Rank --}}
                  <li class="sub-menu">
                       <a href="javascript:;">
