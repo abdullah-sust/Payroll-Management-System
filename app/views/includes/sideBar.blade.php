@@ -46,8 +46,8 @@
                           <span>Salary & Rank</span>
                       </a>
                         <ul class="sub">
-                              <li><a href="{{ route('salary.index') }}">All Salary</a></li>
-                              <li><a href="{{ route('salary.create') }}">Create Salary</a></li>
+                              <li><a href="{{ route('salary.index') }}">Rankwise Salary</a></li>
+                              <li><a href="{{ route('salary.create') }}">Add New Rank</a></li>
                         </ul>
                   </li>
 

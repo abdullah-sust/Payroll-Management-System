@@ -8,14 +8,14 @@
                           <div class="form-group">
                               <label class="col-lg-1 col-sm-1 control-label"></label>
                               <div class="col-lg-8 col-sm-8">
-                                  <input type="text" name="id" class="form-control input-xxlarge" placeholder="Type Employee ID here e.g. 100101">
+                                  <input type="text" name="id" class="form-control input-xxlarge" placeholder="Type Employee ID e.g. 100101 or Name e.g. Masiur or Abdullah">
                               </div>
                               <div class="col-lg-2">
                                   <button class="btn btn-primary" type="submit">SEARCH</button>
                               </div>
                           </div>
                       </form>
-                <!-- end search area >  
+                <!-- end search area >
 
               <!--state overview start-->
               <div class="row state-overview">

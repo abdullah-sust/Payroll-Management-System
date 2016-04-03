@@ -223,11 +223,21 @@ class EmployeeController extends \BaseController {
 
 	public function search() {
 		$id = Input::get('id');
-		if(!User::where('employeeID', $id)->exists()) {
-			return Redirect::route('dashboard')->withErrors('The Employee ID you provided does not exist.Please, Search with a valid ID');
+		if(is_numeric($id)) {
+			if(!User::where('employeeID', $id)->exists()) {
+				return Redirect::route('dashboard')->withErrors('The Employee ID you provided does not exist. Please, Search with a valid ID');
+			}
+			$status = User::where('employeeID', $id)->first(); // $d is employee id here
+			$id = User::where('employeeID', $id)->pluck('id'); // this is user id 
+		} else {
+			$profile= Profile::where('first_name', 'LIKE', '%'.$id.'%')->orWhere('last_name', 'LIKE', '%'.$id.'%')->first();
+			if(!$profile){
+				return Redirect::route('dashboard')->withErrors('The Employee Name you provided does not exist. Please, Search with a valid Name');
+			}
+			$id = $profile->user_id;
+			$status = User::find($id);
 		}
-		$status = User::where('employeeID', $id)->first(); // $d is employee id here
-		$id = User::where('employeeID', $id)->pluck('id'); // this is user id 
+		
 		$salary = Helper::calculation($id);
 		return View::make('calculation.show')
 						->with('status', $status)

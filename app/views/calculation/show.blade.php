@@ -87,7 +87,7 @@
                                           <div class="bio-desk">
                                               
 
-                                            @if(!empty($status->salaryrank->basic))
+                                            @if(!empty($status->companyprofile->rank->basic ))
                                               <h3 style="color:green">{{ $salary }}</h3>
                                             @else
                                               ____

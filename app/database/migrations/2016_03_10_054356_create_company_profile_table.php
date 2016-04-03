@@ -24,14 +24,14 @@ class CreateCompanyProfileTable extends Migration {
 			$table->integer('rank_id')->unsigned();
 			$table->foreign('rank_id')->references('id')
 									->on('salary_rank')
-									->onDelete('cascade')
+									// ->onDelete('cascade')
 									->onUpdate('cascade');
 
 			$table->string('join_date');
 			$table->integer('designation_id')->unsigned();
 			$table->foreign('designation_id')->references('id')
 											->on('designation')
-											->onDelete('cascade')
+											// ->onDelete('cascade')
 											->onUpdate('cascade');
 
 			$table->string('contribution');
