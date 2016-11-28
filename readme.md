@@ -1,6 +1,12 @@
 ## Payroll or Salary Management System
 
-###Technology: 	
+### Supervisor:
+
+Mr. Biswapriyo Chakrabarty<br>
+Lecturer, Dept. of CSE, SUST<br>
+biswapriyo.chakrabarty@gmail.com<br>
+
+### Technology: 	
 		Laravel 4.2 
 		MySQL
 		Bootstrap
